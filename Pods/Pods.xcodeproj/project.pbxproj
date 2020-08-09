@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		060CFAD062BA43EDEBC638647CC4EB0B /* Pods-SpotifyVisionTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1945471DDFE94758550E3F6C0BB096 /* Pods-SpotifyVisionTests-dummy.m */; };
+		3C596BE88E629BB3E904E9F7F81EE9B0 /* Pods-SpotifyVision-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6430EB1AF111BB3F338CEDB1CD91370 /* Pods-SpotifyVision-dummy.m */; };
+		475C993B9176C0A5F36F87583C4048D3 /* Pods-SpotifyVision-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C436AE2893B14D5870F7AD99A57C906 /* Pods-SpotifyVision-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5AA06D44D1DE7FE326FE1C8375BE0C9 /* Pods-SpotifyVisionTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F2AAF35BC350C9C603446BB172FAF4BE /* Pods-SpotifyVisionTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93EFE5FAF51B7F7579588B7995EB1FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		D7E5732C7F0365E382D1912160BD529F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		680738A5AAE6E6305EA6640E4416D88E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 182EEEDBDB547EC7C8FC5F8F2FFC515C;
+			remoteInfo = "Pods-SpotifyVision";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D028A6FDEB0D8AF4A8D486EC3E9F4B7 /* Pods-SpotifyVision-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyVision-Info.plist"; sourceTree = "<group>"; };
+		2C63FFF235DDCC7ECF7D5A06E27BAF4B /* Pods-SpotifyVisionTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyVisionTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		4C436AE2893B14D5870F7AD99A57C906 /* Pods-SpotifyVision-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpotifyVision-umbrella.h"; sourceTree = "<group>"; };
+		563864A1BC5005243D6F963381EC213C /* Pods-SpotifyVisionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyVisionTests.debug.xcconfig"; sourceTree = "<group>"; };
+		572FEDD45E16159DD4DD33EB5E6859A2 /* Pods_SpotifyVision.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpotifyVision.framework; path = "Pods-SpotifyVision.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E8BA12AD53EC1D7579BD7E2D1BD44E2 /* Pods-SpotifyVisionTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpotifyVisionTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5F1945471DDFE94758550E3F6C0BB096 /* Pods-SpotifyVisionTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpotifyVisionTests-dummy.m"; sourceTree = "<group>"; };
+		7F0C228436B9CF87AFF1B6257503DCEF /* Pods-SpotifyVision.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyVision.debug.xcconfig"; sourceTree = "<group>"; };
+		8C2108DEFC98631A3174A16467568B50 /* Pods-SpotifyVision-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpotifyVision-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8EFB5B8E211631E7B846E426B462BCC7 /* Pods_SpotifyVisionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpotifyVisionTests.framework; path = "Pods-SpotifyVisionTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AB6F934FC4FC0EDB519B98A7899D89F /* Pods-SpotifyVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyVision.release.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AD99F0174E5FFF930C4A0A5A8B9153EE /* Pods-SpotifyVisionTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpotifyVisionTests.modulemap"; sourceTree = "<group>"; };
+		B153FF9837859BCA16CF3EA58461DC16 /* Pods-SpotifyVision.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpotifyVision.modulemap"; sourceTree = "<group>"; };
+		C6430EB1AF111BB3F338CEDB1CD91370 /* Pods-SpotifyVision-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpotifyVision-dummy.m"; sourceTree = "<group>"; };
+		EC5B89529FF06CDF93667DB0F32C7135 /* Pods-SpotifyVisionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyVisionTests.release.xcconfig"; sourceTree = "<group>"; };
+		F2AAF35BC350C9C603446BB172FAF4BE /* Pods-SpotifyVisionTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpotifyVisionTests-umbrella.h"; sourceTree = "<group>"; };
+		F6F3B39126AD2A325B17A5A69EB8EEF3 /* Pods-SpotifyVision-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyVision-acknowledgements.plist"; sourceTree = "<group>"; };
+		FCA6C528EA42FBDDEABE340ACC0391C2 /* Pods-SpotifyVisionTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyVisionTests-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		972507AC610B6949081DFDE63EE2A62B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7E5732C7F0365E382D1912160BD529F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF4EDA6740930DB528E6709B13529383 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C93EFE5FAF51B7F7579588B7995EB1FC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0848CEFB17C1DC6098A684A77A44C7FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				572FEDD45E16159DD4DD33EB5E6859A2 /* Pods_SpotifyVision.framework */,
+				8EFB5B8E211631E7B846E426B462BCC7 /* Pods_SpotifyVisionTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		62A1BEC46DF9DDB7CD0F6AF49EA3C0C3 /* Pods-SpotifyVisionTests */ = {
+			isa = PBXGroup;
+			children = (
+				AD99F0174E5FFF930C4A0A5A8B9153EE /* Pods-SpotifyVisionTests.modulemap */,
+				5E8BA12AD53EC1D7579BD7E2D1BD44E2 /* Pods-SpotifyVisionTests-acknowledgements.markdown */,
+				2C63FFF235DDCC7ECF7D5A06E27BAF4B /* Pods-SpotifyVisionTests-acknowledgements.plist */,
+				5F1945471DDFE94758550E3F6C0BB096 /* Pods-SpotifyVisionTests-dummy.m */,
+				FCA6C528EA42FBDDEABE340ACC0391C2 /* Pods-SpotifyVisionTests-Info.plist */,
+				F2AAF35BC350C9C603446BB172FAF4BE /* Pods-SpotifyVisionTests-umbrella.h */,
+				563864A1BC5005243D6F963381EC213C /* Pods-SpotifyVisionTests.debug.xcconfig */,
+				EC5B89529FF06CDF93667DB0F32C7135 /* Pods-SpotifyVisionTests.release.xcconfig */,
+			);
+			name = "Pods-SpotifyVisionTests";
+			path = "Target Support Files/Pods-SpotifyVisionTests";
+			sourceTree = "<group>";
+		};
+		97ADE4EA661034F55B094926B3172B5C /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A0221D925E86FF7CA0903B2C4AE30573 /* Pods-SpotifyVision */,
+				62A1BEC46DF9DDB7CD0F6AF49EA3C0C3 /* Pods-SpotifyVisionTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A0221D925E86FF7CA0903B2C4AE30573 /* Pods-SpotifyVision */ = {
+			isa = PBXGroup;
+			children = (
+				B153FF9837859BCA16CF3EA58461DC16 /* Pods-SpotifyVision.modulemap */,
+				8C2108DEFC98631A3174A16467568B50 /* Pods-SpotifyVision-acknowledgements.markdown */,
+				F6F3B39126AD2A325B17A5A69EB8EEF3 /* Pods-SpotifyVision-acknowledgements.plist */,
+				C6430EB1AF111BB3F338CEDB1CD91370 /* Pods-SpotifyVision-dummy.m */,
+				1D028A6FDEB0D8AF4A8D486EC3E9F4B7 /* Pods-SpotifyVision-Info.plist */,
+				4C436AE2893B14D5870F7AD99A57C906 /* Pods-SpotifyVision-umbrella.h */,
+				7F0C228436B9CF87AFF1B6257503DCEF /* Pods-SpotifyVision.debug.xcconfig */,
+				9AB6F934FC4FC0EDB519B98A7899D89F /* Pods-SpotifyVision.release.xcconfig */,
+			);
+			name = "Pods-SpotifyVision";
+			path = "Target Support Files/Pods-SpotifyVision";
+			sourceTree = "<group>";
+		};
+		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				0848CEFB17C1DC6098A684A77A44C7FE /* Products */,
+				97ADE4EA661034F55B094926B3172B5C /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2940AFB1086FC1BF860509F6678AE149 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				475C993B9176C0A5F36F87583C4048D3 /* Pods-SpotifyVision-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE8956BA685511E30583AE069B173873 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5AA06D44D1DE7FE326FE1C8375BE0C9 /* Pods-SpotifyVisionTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		182EEEDBDB547EC7C8FC5F8F2FFC515C /* Pods-SpotifyVision */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34E075D8C4F503B7D7C35DF4ABD0DDCB /* Build configuration list for PBXNativeTarget "Pods-SpotifyVision" */;
+			buildPhases = (
+				2940AFB1086FC1BF860509F6678AE149 /* Headers */,
+				F09FD03490F414726FB46C0A94BCCC9F /* Sources */,
+				972507AC610B6949081DFDE63EE2A62B /* Frameworks */,
+				F40EF0D91CEC2A37A21A5B77FDE42F72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-SpotifyVision";
+			productName = "Pods-SpotifyVision";
+			productReference = 572FEDD45E16159DD4DD33EB5E6859A2 /* Pods_SpotifyVision.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		65901178ABD979BFD5D99CCB94EE4CCA /* Pods-SpotifyVisionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9680A9DF7AB7B54566EF59980DBA4FC9 /* Build configuration list for PBXNativeTarget "Pods-SpotifyVisionTests" */;
+			buildPhases = (
+				AE8956BA685511E30583AE069B173873 /* Headers */,
+				C2B98BB0C44145B2F68A6FC244C5117D /* Sources */,
+				DF4EDA6740930DB528E6709B13529383 /* Frameworks */,
+				5853C47717715AFBE547CB821D7C0482 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BA9F085C8FAD520965B6B3491618076 /* PBXTargetDependency */,
+			);
+			name = "Pods-SpotifyVisionTests";
+			productName = "Pods-SpotifyVisionTests";
+			productReference = 8EFB5B8E211631E7B846E426B462BCC7 /* Pods_SpotifyVisionTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 0848CEFB17C1DC6098A684A77A44C7FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				182EEEDBDB547EC7C8FC5F8F2FFC515C /* Pods-SpotifyVision */,
+				65901178ABD979BFD5D99CCB94EE4CCA /* Pods-SpotifyVisionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5853C47717715AFBE547CB821D7C0482 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F40EF0D91CEC2A37A21A5B77FDE42F72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2B98BB0C44145B2F68A6FC244C5117D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				060CFAD062BA43EDEBC638647CC4EB0B /* Pods-SpotifyVisionTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F09FD03490F414726FB46C0A94BCCC9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C596BE88E629BB3E904E9F7F81EE9B0 /* Pods-SpotifyVision-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BA9F085C8FAD520965B6B3491618076 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-SpotifyVision";
+			target = 182EEEDBDB547EC7C8FC5F8F2FFC515C /* Pods-SpotifyVision */;
+			targetProxy = 680738A5AAE6E6305EA6640E4416D88E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		10B874DF385D80853553A9322BE82C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F0C228436B9CF87AFF1B6257503DCEF /* Pods-SpotifyVision.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		257497152829C177993B5EC99C1D227A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		37D1CFBC087BF20147C6D43BF27B9537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 563864A1BC5005243D6F963381EC213C /* Pods-SpotifyVisionTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyVisionTests/Pods-SpotifyVisionTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyVisionTests/Pods-SpotifyVisionTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8CF1633F8B72D9A6B835B0A015273971 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AB6F934FC4FC0EDB519B98A7899D89F /* Pods-SpotifyVision.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DD8F832993327D1DD8046C3CBCBD97CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		DE4F69C6DA65FD9AB73D61CD18F266FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC5B89529FF06CDF93667DB0F32C7135 /* Pods-SpotifyVisionTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyVisionTests/Pods-SpotifyVisionTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyVisionTests/Pods-SpotifyVisionTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34E075D8C4F503B7D7C35DF4ABD0DDCB /* Build configuration list for PBXNativeTarget "Pods-SpotifyVision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10B874DF385D80853553A9322BE82C76 /* Debug */,
+				8CF1633F8B72D9A6B835B0A015273971 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD8F832993327D1DD8046C3CBCBD97CD /* Debug */,
+				257497152829C177993B5EC99C1D227A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9680A9DF7AB7B54566EF59980DBA4FC9 /* Build configuration list for PBXNativeTarget "Pods-SpotifyVisionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37D1CFBC087BF20147C6D43BF27B9537 /* Debug */,
+				DE4F69C6DA65FD9AB73D61CD18F266FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
