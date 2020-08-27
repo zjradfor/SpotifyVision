@@ -19,6 +19,29 @@ protocol PlayerViewDelegate: AnyObject {
 // MARK: -
 
 class PlayerView: UIView {
+    // MARK: - Constants
+    
+    private enum Dimensions {
+        static let buttonDimensions = CGRect(x: 0, y: 0, width: 50, height: 50)
+        
+        enum AlbumImage {
+            static let width: CGFloat = 450
+            static let height: CGFloat = 450
+        }
+        
+        enum ContainerView {
+            static let height: CGFloat = 160
+            static let leftMargin: CGFloat = 20
+            static let rightMargin: CGFloat = -20
+        }
+        
+        enum TrackLabel {
+            static let topMargin: CGFloat = 20
+            static let leftMargin: CGFloat = 25
+            static let rightMargin: CGFloat = -25
+        }
+    }
+    
     // MARK: - Properties
     
     weak var delegate: PlayerViewDelegate?
@@ -27,28 +50,33 @@ class PlayerView: UIView {
     
     private var albumImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = Dimensions.AlbumImage.height / 2
+        imageView.clipsToBounds = true
         
         return imageView
     }()
     
     private var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 0.8, alpha: 0.85)
+        view.layer.cornerRadius = 8
         
         return view
     }()
     
     private var trackLabel: UILabel = {
         let label = UILabel()
-        label.text = "This is a sample thing playing"
+        label.text = "Nothing Playing"
+        label.textAlignment = .center
+        label.numberOfLines = 0
         
         return label
     }()
 
     private var playButton: UIButton = {
         let button = UIButton(type: .system)
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        let image = UIImage(systemName: "play.circle.fill")
+        button.frame = Dimensions.buttonDimensions
+        let image = UIImage(systemName: .playSymbol)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
         
@@ -57,8 +85,8 @@ class PlayerView: UIView {
     
     private var previousButton: UIButton = {
         let button = UIButton(type: .system)
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        let image = UIImage(systemName: "backward.end.fill")
+        button.frame = Dimensions.buttonDimensions
+        let image = UIImage(systemName: .previousSymbol)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(previousButtonPressed), for: .touchUpInside)
         
@@ -67,8 +95,8 @@ class PlayerView: UIView {
     
     private var nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        let image = UIImage(systemName: "forward.end.fill")
+        button.frame = Dimensions.buttonDimensions
+        let image = UIImage(systemName: .nextSymbol)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
         
@@ -105,12 +133,18 @@ class PlayerView: UIView {
     // MARK: - Methods
     
     func updateUI(isPlaying: Bool, trackName: String, albumImageURL: URL) {
-        let playButtonImageType = isPlaying ? "pause.circle.fill" : "play.circle.fill"
+        let playButtonImageType: String = isPlaying ? .pauseSymbol : .playSymbol
         let playButtonImage = UIImage(systemName: playButtonImageType)
         
         playButton.setImage(playButtonImage, for: .normal)
         trackLabel.text = trackName
         albumImage.loadImage(from: albumImageURL)
+        
+        if isPlaying {
+            albumImage.rotate360Degrees()
+        } else {
+            albumImage.layer.removeAllAnimations()
+        }
     }
     
     // MARK: - Actions
@@ -131,7 +165,7 @@ class PlayerView: UIView {
     }
 }
 
-// MARK: - Constructible
+// MARK: -
 
 extension PlayerView: Constructible {
     func addSubviews() {
@@ -149,20 +183,21 @@ extension PlayerView: Constructible {
         albumImage.activateConstraints([
             albumImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             albumImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            albumImage.widthAnchor.constraint(equalToConstant: 400),
-            albumImage.heightAnchor.constraint(equalToConstant: 400)
+            albumImage.widthAnchor.constraint(equalToConstant: Dimensions.AlbumImage.width),
+            albumImage.heightAnchor.constraint(equalToConstant: Dimensions.AlbumImage.height)
         ])
         
         containerView.activateConstraints([
             containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containerView.widthAnchor.constraint(equalToConstant: 300),
-            containerView.heightAnchor.constraint(equalToConstant: 80)
+            containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimensions.ContainerView.leftMargin),
+            containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.ContainerView.rightMargin),
+            containerView.heightAnchor.constraint(equalToConstant: Dimensions.ContainerView.height)
         ])
         
         trackLabel.activateConstraints([
-            trackLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            trackLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10)
+            trackLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: Dimensions.TrackLabel.leftMargin),
+            trackLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: Dimensions.TrackLabel.rightMargin),
+            trackLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Dimensions.TrackLabel.topMargin)
         ])
         
         buttonStack.activateConstraints([

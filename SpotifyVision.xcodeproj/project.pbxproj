@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E4E3BDCEFC79A274474C6ED /* Pods_SpotifyVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F8EC7AA560E69EF156EB25 /* Pods_SpotifyVision.framework */; };
+		4B0243F424F82A9F00AE1EFB /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */; };
 		4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAC24C5111D0050B469 /* NetworkManager.swift */; };
 		4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAE24CB9A360050B469 /* AuthToken.swift */; };
 		4B63DFB124CE434B0050B469 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB024CE434B0050B469 /* Services.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		4B63DFAC24C5111D0050B469 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4B63DFAE24CB9A360050B469 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		4B63DFB024CE434B0050B469 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				4BD0881C24D0FAA000BC0B80 /* Constructible.swift */,
 				4BD0881A24D0F9B700BC0B80 /* UIViewExtensions.swift */,
 				4B65798824D8C96D00A8B501 /* UIImageViewExtensions.swift */,
+				4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				4BD0881124CF86BD00BC0B80 /* CurrentlyPlaying.swift in Sources */,
 				4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */,
 				4BD0881724CFB17D00BC0B80 /* AuthenticationWebViewController.swift in Sources */,
+				4B0243F424F82A9F00AE1EFB /* StringExtensions.swift in Sources */,
 				4BCC7AE924D78A2F00583C62 /* PlayerViewModel.swift in Sources */,
 				4BD0881924CFB34600BC0B80 /* AuthenticationWebViewModel.swift in Sources */,
 				4B63DFB424CE43DD0050B469 /* RefreshToken.swift in Sources */,

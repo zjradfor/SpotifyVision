@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - UI
+
 extension UIView {
     func activateConstraints(_ constraints: [NSLayoutConstraint]) {
         translatesAutoresizingMaskIntoConstraints = false
@@ -20,5 +22,19 @@ extension UIView {
         trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+}
+
+// MARK: - Animation
+
+extension UIView {
+    func rotate360Degrees(duration: CFTimeInterval = 12) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(Double.pi * 2)
+        rotateAnimation.isRemovedOnCompletion = false
+        rotateAnimation.duration = duration
+        rotateAnimation.repeatCount = Float.infinity
+        self.layer.add(rotateAnimation, forKey: nil)
     }
 }
