@@ -15,10 +15,20 @@ struct AuthenticationWebViewModel {
     
     var urlString: String
     
+    private let provider: AuthorizationProvider
+    
+    // MARK: - Initialization
+    
+    init(title: String, urlString: String, provider: AuthorizationProvider = AuthorizationService()) {
+        self.title = title
+        self.urlString = urlString
+        self.provider = provider
+    }
+    
     // MARK: - Methods
     
     func getToken(with code: String, completion: @escaping (Bool) -> ()) {
-        Services.getToken(with: code) { result in
+        provider.getToken(with: code) { result in
             switch result {
             case .success(let token):
                 UserDefaults.standard.accessToken = token.accessToken

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		4B63DFB124CE434B0050B469 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB024CE434B0050B469 /* Services.swift */; };
 		4B63DFB424CE43DD0050B469 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB324CE43DD0050B469 /* RefreshToken.swift */; };
 		4B63DFB624CE441E0050B469 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB524CE441E0050B469 /* PlayerService.swift */; };
-		4B65798924D8C96D00A8B501 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65798824D8C96D00A8B501 /* UIImageViewExtensions.swift */; };
 		4B7C8F55248EFA9100455299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F54248EFA9100455299 /* AppDelegate.swift */; };
 		4B7C8F57248EFA9100455299 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F56248EFA9100455299 /* SceneDelegate.swift */; };
 		4B7C8F59248EFA9100455299 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F58248EFA9100455299 /* PlayerViewController.swift */; };
@@ -54,7 +53,6 @@
 		4B63DFB024CE434B0050B469 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		4B63DFB324CE43DD0050B469 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		4B63DFB524CE441E0050B469 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
-		4B65798824D8C96D00A8B501 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		4B7C8F51248EFA9100455299 /* SpotifyVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7C8F54248EFA9100455299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B7C8F56248EFA9100455299 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				4BD0881E24D0FBCB00BC0B80 /* Colours.swift */,
 				4BD0881C24D0FAA000BC0B80 /* Constructible.swift */,
 				4BD0881A24D0F9B700BC0B80 /* UIViewExtensions.swift */,
-				4B65798824D8C96D00A8B501 /* UIImageViewExtensions.swift */,
 				4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */,
 			);
 			path = Utilities;
@@ -271,6 +268,7 @@
 				4B7C8F4D248EFA9100455299 /* Sources */,
 				4B7C8F4E248EFA9100455299 /* Frameworks */,
 				4B7C8F4F248EFA9100455299 /* Resources */,
+				2BCFFA20E9080FA6A12827DF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,6 +356,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2BCFFA20E9080FA6A12827DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3BDD6A3533B57FDED6218B07 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,7 +445,6 @@
 				4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */,
 				4BD0881B24D0F9B700BC0B80 /* UIViewExtensions.swift in Sources */,
 				4B7C8F57248EFA9100455299 /* SceneDelegate.swift in Sources */,
-				4B65798924D8C96D00A8B501 /* UIImageViewExtensions.swift in Sources */,
 				4BD0880F24CF809600BC0B80 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,21 @@
 
 import Foundation
 
-extension Services {
-    static func getCurrentPlayer(completion: @escaping (Result<CurrentlyPlaying?, APIError>) -> ()) {
-        URLSession.shared.request(baseURL + "/player", method: .GET, headers: header) { result in
+// MARK: -
+
+protocol PlayerProvider {
+    func getCurrentPlayer(completion: @escaping (Result<CurrentlyPlaying?, APIError>) -> ())
+    func playMusic(completion: @escaping (APIError?) -> ())
+    func pauseMusic(completion: @escaping (APIError?) -> ())
+    func skipToNext(completion: @escaping (APIError?) -> ())
+    func skipToPrevious(completion: @escaping (APIError?) -> ())
+}
+
+// MARK: -
+
+class PlayerService: PlayerProvider {
+    func getCurrentPlayer(completion: @escaping (Result<CurrentlyPlaying?, APIError>) -> ()) {
+        URLSession.shared.request(Services.baseURL + "/player", method: .GET, headers: Services.header) { result in
             if case let .success(data) = result {
                 let player = try? JSONDecoder().decode(CurrentlyPlaying.self, from: data)
                 
@@ -23,8 +35,8 @@ extension Services {
         }
     }
     
-    static func playMusic(completion: @escaping (APIError?) -> ()) {
-        URLSession.shared.request(baseURL + "/player/play", method: .PUT, headers: header) { result in
+    func playMusic(completion: @escaping (APIError?) -> ()) {
+        URLSession.shared.request(Services.baseURL + "/player/play", method: .PUT, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
             }
@@ -33,8 +45,8 @@ extension Services {
         }
     }
     
-    static func pauseMusic(completion: @escaping (APIError?) -> ()) {
-        URLSession.shared.request(baseURL + "/player/pause", method: .PUT, headers: header) { result in
+    func pauseMusic(completion: @escaping (APIError?) -> ()) {
+        URLSession.shared.request(Services.baseURL + "/player/pause", method: .PUT, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
             }
@@ -43,8 +55,8 @@ extension Services {
         }
     }
     
-    static func skipToNext(completion: @escaping (APIError?) -> ()) {
-        URLSession.shared.request(baseURL + "/player/next", method: .POST, headers: header) { result in
+    func skipToNext(completion: @escaping (APIError?) -> ()) {
+        URLSession.shared.request(Services.baseURL + "/player/next", method: .POST, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
             }
@@ -53,8 +65,8 @@ extension Services {
         }
     }
     
-    static func skipToPrevious(completion: @escaping (APIError?) -> ()) {
-        URLSession.shared.request(baseURL + "/player/previous", method: .POST, headers: header) { result in
+    func skipToPrevious(completion: @escaping (APIError?) -> ()) {
+        URLSession.shared.request(Services.baseURL + "/player/previous", method: .POST, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
             }

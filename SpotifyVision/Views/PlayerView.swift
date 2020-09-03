@@ -6,6 +6,7 @@
 //  Copyright © 2020 Zach Radford. All rights reserved.
 //
 
+import SDWebImage
 import UIKit
 
 // MARK: -
@@ -40,6 +41,10 @@ class PlayerView: UIView {
             static let leftMargin: CGFloat = 25
             static let rightMargin: CGFloat = -25
         }
+        
+        enum ButtonStack {
+            static let centerYMargin: CGFloat = 20
+        }
     }
     
     // MARK: - Properties
@@ -50,6 +55,7 @@ class PlayerView: UIView {
     
     private var albumImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "album-placeholder")
         imageView.layer.cornerRadius = Dimensions.AlbumImage.height / 2
         imageView.clipsToBounds = true
         
@@ -132,13 +138,13 @@ class PlayerView: UIView {
     
     // MARK: - Methods
     
-    func updateUI(isPlaying: Bool, trackName: String, albumImageURL: URL) {
+    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?) {
         let playButtonImageType: String = isPlaying ? .pauseSymbol : .playSymbol
         let playButtonImage = UIImage(systemName: playButtonImageType)
         
         playButton.setImage(playButtonImage, for: .normal)
-        trackLabel.text = trackName
-        albumImage.loadImage(from: albumImageURL)
+        trackLabel.text = trackName ?? "Nothing Playing"
+        albumImage.sd_setImage(with: albumImageURL, placeholderImage: UIImage(named: "album-placeholder"))
         
         if isPlaying {
             albumImage.rotate360Degrees()
@@ -201,7 +207,7 @@ extension PlayerView: Constructible {
         ])
         
         buttonStack.activateConstraints([
-            buttonStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 20),
+            buttonStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: Dimensions.ButtonStack.centerYMargin),
             buttonStack.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
         ])
     }

@@ -8,8 +8,17 @@
 
 import Foundation
 
-extension Services {
-    private static var authorizationHeader: HTTPRequestHeaders {
+// MARK: -
+
+protocol AuthorizationProvider {
+    func getToken(with code: String, completion: @escaping (Result<AuthToken, APIError>) -> ())
+    func refreshToken(completion: @escaping (Bool) -> ())
+}
+
+// MARK: -
+
+class AuthorizationService: AuthorizationProvider {
+    private var authorizationHeader: HTTPRequestHeaders {
         let clientID = SpotifyCredentials().clientID
         let clientSecret = SpotifyCredentials().clientSecret
         guard let data = "\(clientID):\(clientSecret)".data(using: .utf8) else { return [:] }
@@ -17,7 +26,7 @@ extension Services {
         return ["Authorization" : "Basic \(data.base64EncodedString(options: []))"]
     }
     
-    static func getToken(with code: String, completion: @escaping (Result<AuthToken, APIError>) -> ()) {
+    func getToken(with code: String, completion: @escaping (Result<AuthToken, APIError>) -> ()) {
         let parameters: HTTPRequestParameters = ["client_id": SpotifyCredentials().clientID,
                                                  "client_secret": SpotifyCredentials().clientSecret,
                                                  "grant_type": "authorization_code",
@@ -35,7 +44,7 @@ extension Services {
         }
     }
     
-    static func refreshToken(completion: @escaping (Bool) -> ()) {
+    func refreshToken(completion: @escaping (Bool) -> ()) {
         guard let refreshToken = UserDefaults.standard.refreshToken else {
             completion(false)
             return

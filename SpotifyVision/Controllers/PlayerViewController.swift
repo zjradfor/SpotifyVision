@@ -68,6 +68,28 @@ class PlayerViewController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     
+    private func askToOpenSpotify() {
+        guard let url = URL(string: "spotify:") else { return }
+        
+        let alertController = UIAlertController(title: "No active player found", message: "Start playing something through Spotify!", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        if UIApplication.shared.canOpenURL(url) {
+            let openAction = UIAlertAction(title: "Open", style: .default) { _ in
+                UIApplication.shared.open(URL(string: "https://open.spotify.com")!)
+            }
+            
+            alertController.addAction(openAction)
+            alertController.preferredAction = openAction
+        }
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Event Handlers
     
     @objc
@@ -99,18 +121,16 @@ extension PlayerViewController: PlayerViewDelegate {
 // MARK: - PlayerDelegate
 
 extension PlayerViewController: PlayerViewModelDelegate {
-    func updateUI(isPlaying: Bool, trackName: String, albumImageURL: URL) {
+    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?) {
         playerView.updateUI(isPlaying: isPlaying, trackName: trackName, albumImageURL: albumImageURL)
     }
     
     func showError(_ error: APIError) {
-        print(error)
-    }
-    
-    func openSpotify() {
-        //        let url = URL(string: "spotify:")
-        //        print(UIApplication.shared.canOpenURL(url!))
-        //
-        //        UIApplication.shared.open(URL(string: "https://open.spotify.com")!)
+        switch error {
+        case .notFound:
+            askToOpenSpotify()
+        default:
+            print(error)
+        }
     }
 }

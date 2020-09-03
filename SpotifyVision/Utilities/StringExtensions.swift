@@ -8,8 +8,9 @@
 
 import Foundation
 
+// MARK: - SF Symbols
+
 extension String {
-    // SF Symbols
     static let playSymbol = "play.fill"
     static let pauseSymbol = "pause.fill"
     static let nextSymbol = "forward.end.fill"

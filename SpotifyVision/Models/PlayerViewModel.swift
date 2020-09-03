@@ -11,9 +11,8 @@ import Foundation
 // MARK: -
 
 protocol PlayerViewModelDelegate: AnyObject {
-    func updateUI(isPlaying: Bool, trackName: String, albumImageURL: URL)
+    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?)
     func showError(_ error: APIError)
-    func openSpotify()
 }
 
 // MARK: -
@@ -25,25 +24,32 @@ class PlayerViewModel {
     
     var isPlaying: Bool = false
     
+    private let provider: PlayerProvider
+    
+    // MARK: - Initialization
+    
+    init(provider: PlayerProvider = PlayerService()) {
+        self.provider = provider
+    }
+    
     // MARK: - Methods
     
     func getCurrentlyPlaying() {
         // Delay getting the current player to allow other actions to be synced on Spotify
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            Services.getCurrentPlayer { [weak self] result in
+            self.provider.getCurrentPlayer { [weak self] result in
                 guard let strongSelf = self else { return }
                 
                 switch result {
                 case .success(let successResult):
                     guard let currentlyPlaying = successResult,
                         let currentTrack = currentlyPlaying.item,
-                        let albumImage = currentTrack.album.images.first,
-                        let albumImageURL = URL(string: albumImage.url) else {
-                            strongSelf.delegate?.showError(.generalError)
-                            return
-                    }
+                        let albumImage = currentTrack.album.images.first else { return }
+                    
+                    let albumImageURL = URL(string: albumImage.url)
                     
                     strongSelf.isPlaying = currentlyPlaying.isPlaying
+                    
                     strongSelf.delegate?.updateUI(
                         isPlaying: currentlyPlaying.isPlaying,
                         trackName: currentTrack.name,
@@ -58,7 +64,7 @@ class PlayerViewModel {
     }
     
     func playMusic() {
-        Services.playMusic { [weak self] error in
+        provider.playMusic { [weak self] error in
             if let error = error {
                 self?.delegate?.showError(error)
             } else {
@@ -68,7 +74,7 @@ class PlayerViewModel {
     }
     
     func pauseMusic() {
-        Services.pauseMusic { [weak self] error in
+        provider.pauseMusic { [weak self] error in
             if let error = error {
                 self?.delegate?.showError(error)
             } else {
@@ -78,7 +84,7 @@ class PlayerViewModel {
     }
     
     func skipToNextSong() {
-        Services.skipToNext { [weak self] error in
+        provider.skipToNext { [weak self] error in
             if let error = error {
                 self?.delegate?.showError(error)
             } else {
@@ -88,7 +94,7 @@ class PlayerViewModel {
     }
     
     func skipToPreviousSong() {
-        Services.skipToPrevious { [weak self] error in
+        provider.skipToPrevious { [weak self] error in
             if let error = error {
                 self?.delegate?.showError(error)
             } else {

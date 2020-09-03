@@ -83,7 +83,7 @@ extension URLSession {
                 
             case .ERROR(401):
                 print("needs refresh token")
-                Services.refreshToken { result in
+                AuthorizationService().refreshToken { result in
                     if result {
                         let token: String = UserDefaults.standard.accessToken!
                         let newHeader: HTTPRequestHeaders = ["Authorization" : "Bearer \(token)"]
