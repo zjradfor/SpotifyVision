@@ -14,6 +14,8 @@ class AuthenticationWebViewController: UIViewController {
     
     var viewModel: AuthenticationWebViewModel!
     
+    var didClose: (() -> Void)?
+    
     private var webView: WKWebView!
     
     // MARK: - Lifecyle Methods
@@ -39,15 +41,6 @@ class AuthenticationWebViewController: UIViewController {
             webView?.load(request)
         }
     }
-}
-
-// MARK: - WKNavigationDelegate
-
-extension AuthenticationWebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        handleWebCallback(request: navigationAction.request)
-        decisionHandler(.allow)
-    }
     
     private func handleWebCallback(request: URLRequest) {
         guard let url = request.url,
@@ -59,11 +52,21 @@ extension AuthenticationWebViewController: WKNavigationDelegate {
         if let code = queryItems.filter({ item in item.name == "code" }).first?.value {
             viewModel.getToken(with: code) { result in
                 if result {
+                    self.didClose?()
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    // error alert?
+                    // error?
                 }
             }
         }
+    }
+}
+
+// MARK: - WKNavigationDelegate
+
+extension AuthenticationWebViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        handleWebCallback(request: navigationAction.request)
+        decisionHandler(.allow)
     }
 }

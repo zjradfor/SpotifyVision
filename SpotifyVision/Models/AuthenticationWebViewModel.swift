@@ -8,12 +8,14 @@
 
 import Foundation
 
-struct AuthenticationWebViewModel {
+class AuthenticationWebViewModel {
     // MARK: - Properties
     
     var title: String
     
     var urlString: String
+    
+    private let userDefaults = UserDefaults.standard
     
     private let provider: AuthorizationProvider
     
@@ -28,11 +30,13 @@ struct AuthenticationWebViewModel {
     // MARK: - Methods
     
     func getToken(with code: String, completion: @escaping (Bool) -> ()) {
-        provider.getToken(with: code) { result in
+        provider.getToken(with: code) { [weak self] result in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let token):
-                UserDefaults.standard.accessToken = token.accessToken
-                UserDefaults.standard.refreshToken = token.refreshToken
+                strongSelf.userDefaults.accessToken = token.accessToken
+                strongSelf.userDefaults.refreshToken = token.refreshToken
                 
                 completion(true)
                 

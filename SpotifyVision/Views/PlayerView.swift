@@ -23,8 +23,6 @@ class PlayerView: UIView {
     // MARK: - Constants
     
     private enum Dimensions {
-        static let buttonDimensions = CGRect(x: 0, y: 0, width: 50, height: 50)
-        
         enum AlbumImage {
             static let width: CGFloat = 450
             static let height: CGFloat = 450
@@ -44,6 +42,11 @@ class PlayerView: UIView {
         
         enum ButtonStack {
             static let centerYMargin: CGFloat = 20
+        }
+        
+        enum ControlButtons {
+            static let width: CGFloat = 50
+            static let height: CGFloat = 50
         }
     }
     
@@ -81,7 +84,6 @@ class PlayerView: UIView {
 
     private var playButton: UIButton = {
         let button = UIButton(type: .system)
-        button.frame = Dimensions.buttonDimensions
         let image = UIImage(systemName: .playSymbol)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
@@ -91,7 +93,6 @@ class PlayerView: UIView {
     
     private var previousButton: UIButton = {
         let button = UIButton(type: .system)
-        button.frame = Dimensions.buttonDimensions
         let image = UIImage(systemName: .previousSymbol)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(previousButtonPressed), for: .touchUpInside)
@@ -101,7 +102,6 @@ class PlayerView: UIView {
     
     private var nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.frame = Dimensions.buttonDimensions
         let image = UIImage(systemName: .nextSymbol)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
@@ -209,6 +209,21 @@ extension PlayerView: Constructible {
         buttonStack.activateConstraints([
             buttonStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: Dimensions.ButtonStack.centerYMargin),
             buttonStack.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
+        
+        previousButton.activateConstraints([
+            previousButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
+            previousButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
+        ])
+        
+        playButton.activateConstraints([
+            playButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
+            playButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
+        ])
+        
+        nextButton.activateConstraints([
+            nextButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
+            nextButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
         ])
     }
 }

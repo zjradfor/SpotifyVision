@@ -15,6 +15,8 @@ class PlayerViewController: UIViewController {
     
     private var playerView: PlayerView!
     
+    private let userDefaults = UserDefaults.standard
+    
     private let notificationCenter = NotificationCenter.default
     
     // MARK: - Lifecyle Methods
@@ -40,10 +42,12 @@ class PlayerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if UserDefaults.standard.accessToken == nil {
+        if userDefaults.accessToken == nil {
             openAuthPage()
         } else {
-            updatePlayState()
+            DispatchQueue.main.async {
+                self.updatePlayState()
+            }
         }
     }
     
@@ -61,6 +65,7 @@ class PlayerViewController: UIViewController {
         let authViewModel = AuthenticationWebViewModel(title: "Login", urlString: .spotifyURL)
         let authVC = AuthenticationWebViewController()
         authVC.viewModel = authViewModel
+        authVC.didClose = updatePlayState
         authVC.isModalInPresentation = true
         
         let nav = UINavigationController(rootViewController: authVC)

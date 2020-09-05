@@ -65,40 +65,48 @@ class PlayerViewModel {
     
     func playMusic() {
         provider.playMusic { [weak self] error in
+            guard let strongSelf = self else { return }
+            
             if let error = error {
-                self?.delegate?.showError(error)
+                strongSelf.delegate?.showError(error)
             } else {
-                self?.getCurrentlyPlaying()
+                strongSelf.getCurrentlyPlaying()
             }
         }
     }
     
     func pauseMusic() {
         provider.pauseMusic { [weak self] error in
+            guard let strongSelf = self else { return }
+            
             if let error = error {
-                self?.delegate?.showError(error)
+                strongSelf.delegate?.showError(error)
             } else {
-                self?.getCurrentlyPlaying()
+                strongSelf.getCurrentlyPlaying()
             }
         }
     }
     
     func skipToNextSong() {
         provider.skipToNext { [weak self] error in
+            guard let strongSelf = self else { return }
+            
             if let error = error {
-                self?.delegate?.showError(error)
+                strongSelf.delegate?.showError(error)
             } else {
-                self?.getCurrentlyPlaying()
+                strongSelf.getCurrentlyPlaying()
             }
         }
     }
     
     func skipToPreviousSong() {
         provider.skipToPrevious { [weak self] error in
+            guard let strongSelf = self else { return }
+            
             if let error = error {
-                self?.delegate?.showError(error)
+                strongSelf.delegate?.showError(error)
             } else {
-                self?.getCurrentlyPlaying()
+                strongSelf.getCurrentlyPlaying()
             }
         }
     }

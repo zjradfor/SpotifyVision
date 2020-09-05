@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		2E4E3BDCEFC79A274474C6ED /* Pods_SpotifyVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F8EC7AA560E69EF156EB25 /* Pods_SpotifyVision.framework */; };
 		4B0243F424F82A9F00AE1EFB /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */; };
+		4B11B33C2504383F00EB7EF2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B33B2504383F00EB7EF2 /* Device.swift */; };
+		4B11B33E2504385A00EB7EF2 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B33D2504385A00EB7EF2 /* Context.swift */; };
+		4B11B3402504387200EB7EF2 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B33F2504387200EB7EF2 /* Track.swift */; };
+		4B11B3422504388800EB7EF2 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B3412504388800EB7EF2 /* Album.swift */; };
+		4B11B344250438A100EB7EF2 /* SpotifyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B343250438A100EB7EF2 /* SpotifyImage.swift */; };
 		4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAC24C5111D0050B469 /* NetworkManager.swift */; };
 		4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAE24CB9A360050B469 /* AuthToken.swift */; };
 		4B63DFB124CE434B0050B469 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB024CE434B0050B469 /* Services.swift */; };
@@ -48,6 +53,11 @@
 
 /* Begin PBXFileReference section */
 		4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		4B11B33B2504383F00EB7EF2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		4B11B33D2504385A00EB7EF2 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		4B11B33F2504387200EB7EF2 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		4B11B3412504388800EB7EF2 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		4B11B343250438A100EB7EF2 /* SpotifyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyImage.swift; sourceTree = "<group>"; };
 		4B63DFAC24C5111D0050B469 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4B63DFAE24CB9A360050B469 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		4B63DFB024CE434B0050B469 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -115,33 +125,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4B11B33A250437CF00EB7EF2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4B63DFB024CE434B0050B469 /* Services.swift */,
+				4BD0880B24CE751800BC0B80 /* AuthorizationService.swift */,
+				4B63DFB524CE441E0050B469 /* PlayerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4B63DFB224CE435F0050B469 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				4BD0880E24CF809600BC0B80 /* APIError.swift */,
 				4B63DFAC24C5111D0050B469 /* NetworkManager.swift */,
-				4B63DFB024CE434B0050B469 /* Services.swift */,
-				4BD0880A24CE74FD00BC0B80 /* Authorization */,
-				4B63DFB724CE4D1F0050B469 /* Player */,
+				4B11B33A250437CF00EB7EF2 /* Services */,
+				4BD0880D24CE752400BC0B80 /* Models */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		4B63DFB724CE4D1F0050B469 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				4B63DFB824CE53FD0050B469 /* Models */,
-				4B63DFB524CE441E0050B469 /* PlayerService.swift */,
-			);
-			path = Player;
-			sourceTree = "<group>";
-		};
-		4B63DFB824CE53FD0050B469 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4BD0881024CF86BD00BC0B80 /* CurrentlyPlaying.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		4B7C8F48248EFA9100455299 = {
@@ -216,20 +218,17 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		4BD0880A24CE74FD00BC0B80 /* Authorization */ = {
-			isa = PBXGroup;
-			children = (
-				4BD0880D24CE752400BC0B80 /* Models */,
-				4BD0880B24CE751800BC0B80 /* AuthorizationService.swift */,
-			);
-			path = Authorization;
-			sourceTree = "<group>";
-		};
 		4BD0880D24CE752400BC0B80 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4B11B3412504388800EB7EF2 /* Album.swift */,
 				4B63DFAE24CB9A360050B469 /* AuthToken.swift */,
+				4B11B33D2504385A00EB7EF2 /* Context.swift */,
+				4BD0881024CF86BD00BC0B80 /* CurrentlyPlaying.swift */,
+				4B11B33B2504383F00EB7EF2 /* Device.swift */,
 				4B63DFB324CE43DD0050B469 /* RefreshToken.swift */,
+				4B11B343250438A100EB7EF2 /* SpotifyImage.swift */,
+				4B11B33F2504387200EB7EF2 /* Track.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -425,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BE75A3F24BD3151009475FA /* SpotifyCredentials.swift in Sources */,
+				4B11B3402504387200EB7EF2 /* Track.swift in Sources */,
 				4BD0880C24CE751800BC0B80 /* AuthorizationService.swift in Sources */,
 				4B7C8F59248EFA9100455299 /* PlayerViewController.swift in Sources */,
 				4BCC7AE724D24F6100583C62 /* PlayerView.swift in Sources */,
@@ -435,7 +435,9 @@
 				4B63DFB124CE434B0050B469 /* Services.swift in Sources */,
 				4BD0881124CF86BD00BC0B80 /* CurrentlyPlaying.swift in Sources */,
 				4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */,
+				4B11B344250438A100EB7EF2 /* SpotifyImage.swift in Sources */,
 				4BD0881724CFB17D00BC0B80 /* AuthenticationWebViewController.swift in Sources */,
+				4B11B3422504388800EB7EF2 /* Album.swift in Sources */,
 				4B0243F424F82A9F00AE1EFB /* StringExtensions.swift in Sources */,
 				4BCC7AE924D78A2F00583C62 /* PlayerViewModel.swift in Sources */,
 				4BD0881924CFB34600BC0B80 /* AuthenticationWebViewModel.swift in Sources */,
@@ -445,6 +447,8 @@
 				4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */,
 				4BD0881B24D0F9B700BC0B80 /* UIViewExtensions.swift in Sources */,
 				4B7C8F57248EFA9100455299 /* SceneDelegate.swift in Sources */,
+				4B11B33E2504385A00EB7EF2 /* Context.swift in Sources */,
+				4B11B33C2504383F00EB7EF2 /* Device.swift in Sources */,
 				4BD0880F24CF809600BC0B80 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
