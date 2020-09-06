@@ -24,6 +24,8 @@ class PlayerViewModel {
     
     var isPlaying: Bool = false
     
+    private var durationTimer: Timer?
+    
     private let provider: PlayerProvider
     
     // MARK: - Initialization
@@ -55,6 +57,12 @@ class PlayerViewModel {
                         trackName: currentTrack.name,
                         albumImageURL: albumImageURL
                     )
+                    
+                    guard let trackDuration = currentlyPlaying.item?.duration,
+                        let progress = currentlyPlaying.progress else { return }
+                    
+                    let timeRemaining = (trackDuration - progress).msToSeconds
+                    strongSelf.startTimer(for: timeRemaining)
                     
                 case .failure(let error):
                     strongSelf.delegate?.showError(error)
@@ -108,6 +116,16 @@ class PlayerViewModel {
             } else {
                 strongSelf.getCurrentlyPlaying()
             }
+        }
+    }
+    
+    private func startTimer(for seconds: Double) {
+        durationTimer?.invalidate()
+        
+        durationTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { [weak self] _ in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.getCurrentlyPlaying()
         }
     }
 }

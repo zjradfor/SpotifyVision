@@ -14,6 +14,7 @@
 		4B11B3402504387200EB7EF2 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B33F2504387200EB7EF2 /* Track.swift */; };
 		4B11B3422504388800EB7EF2 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B3412504388800EB7EF2 /* Album.swift */; };
 		4B11B344250438A100EB7EF2 /* SpotifyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B343250438A100EB7EF2 /* SpotifyImage.swift */; };
+		4B11B34625045E9100EB7EF2 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B34525045E9100EB7EF2 /* IntExtensions.swift */; };
 		4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAC24C5111D0050B469 /* NetworkManager.swift */; };
 		4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAE24CB9A360050B469 /* AuthToken.swift */; };
 		4B63DFB124CE434B0050B469 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB024CE434B0050B469 /* Services.swift */; };
@@ -58,6 +59,7 @@
 		4B11B33F2504387200EB7EF2 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		4B11B3412504388800EB7EF2 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		4B11B343250438A100EB7EF2 /* SpotifyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyImage.swift; sourceTree = "<group>"; };
+		4B11B34525045E9100EB7EF2 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		4B63DFAC24C5111D0050B469 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4B63DFAE24CB9A360050B469 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		4B63DFB024CE434B0050B469 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				4BD0881C24D0FAA000BC0B80 /* Constructible.swift */,
 				4BD0881A24D0F9B700BC0B80 /* UIViewExtensions.swift */,
 				4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */,
+				4B11B34525045E9100EB7EF2 /* IntExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				4B63DFB424CE43DD0050B469 /* RefreshToken.swift in Sources */,
 				4B63DFB624CE441E0050B469 /* PlayerService.swift in Sources */,
 				4BD0881D24D0FAA000BC0B80 /* Constructible.swift in Sources */,
+				4B11B34625045E9100EB7EF2 /* IntExtensions.swift in Sources */,
 				4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */,
 				4BD0881B24D0F9B700BC0B80 /* UIViewExtensions.swift in Sources */,
 				4B7C8F57248EFA9100455299 /* SceneDelegate.swift in Sources */,
