@@ -87,8 +87,10 @@ extension URLSession {
                     if result {
                         let token: String = UserDefaults.standard.accessToken!
                         let newHeader: HTTPRequestHeaders = ["Authorization" : "Bearer \(token)"]
-                        self.request(urlString, method: method, parameters: parameters, headers: newHeader) { _ in
-                            DispatchQueue.main.async { completionHandler(.success(data)) }
+                        self.request(urlString, method: method, parameters: parameters, headers: newHeader) { result in
+                            if case let .success(newData) = result {
+                                DispatchQueue.main.async { completionHandler(.success(newData)) }
+                            }
                         }
                     } else {
                         DispatchQueue.main.async { completionHandler(.failure(.generalError)) }

@@ -45,9 +45,7 @@ class PlayerViewController: UIViewController {
         if userDefaults.accessToken == nil {
             openAuthPage()
         } else {
-            DispatchQueue.main.async {
-                self.updatePlayState()
-            }
+            updatePlayState()
         }
     }
     
