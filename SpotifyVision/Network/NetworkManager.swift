@@ -74,6 +74,16 @@ extension URLSession {
                 return
             }
             
+            /// For Debugging
+            /*
+             do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                print(jsonResponse)
+             } catch let parsingError {
+                print("Error", parsingError)
+             }
+             */
+            
             switch status {
             case .OK(_):
                 DispatchQueue.main.async { completionHandler(.success(data)) }
@@ -115,12 +125,3 @@ extension URLSession {
         task.resume()
     }
 }
-
-//                do{
-//                     //here dataResponse received from a network request
-//                     let jsonResponse = try JSONSerialization.jsonObject(with:
-//                                            data, options: [])
-//                     print(jsonResponse) //Response result
-//                  } catch let parsingError {
-//                     print("Error", parsingError)
-//                }

@@ -67,7 +67,7 @@ class PlayerView: UIView {
     
     private var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 0.8, alpha: 0.85)
+        view.backgroundColor = .playerColour
         view.layer.cornerRadius = 8
         
         return view

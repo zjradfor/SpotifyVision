@@ -15,6 +15,8 @@ class PlayerViewController: UIViewController {
     
     private var playerView: PlayerView!
     
+    private var openSpotifyErrorView: OpenSpotifyErrorView?
+    
     private let userDefaults = UserDefaults.standard
     
     private let notificationCenter = NotificationCenter.default
@@ -72,25 +74,16 @@ class PlayerViewController: UIViewController {
     }
     
     private func askToOpenSpotify() {
-        guard let url = URL(string: "spotify:") else { return }
+        guard openSpotifyErrorView == nil else { return }
         
-        let alertController = UIAlertController(title: "No active player found", message: "Start playing something through Spotify!", preferredStyle: .alert)
+        let errorView = OpenSpotifyErrorView()
+        errorView.delegate = self
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
+        view.addSubview(errorView)
         
-        if UIApplication.shared.canOpenURL(url) {
-            let openAction = UIAlertAction(title: "Open", style: .default) { _ in
-                UIApplication.shared.open(URL(string: "https://open.spotify.com")!)
-            }
-            
-            alertController.addAction(openAction)
-            alertController.preferredAction = openAction
-        }
+        errorView.pinEdges(to: view)
         
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-        }
+        openSpotifyErrorView = errorView
     }
     
     // MARK: - Event Handlers
@@ -121,6 +114,23 @@ extension PlayerViewController: PlayerViewDelegate {
     }
 }
 
+// MARK: - OpenSpotifyErrorViewDelegate
+
+extension PlayerViewController: OpenSpotifyErrorViewDelegate {
+    func didPressCloseError() {
+        openSpotifyErrorView?.removeFromSuperview()
+        openSpotifyErrorView = nil
+    }
+    
+    func didPressOpenSpotify() {
+        didPressCloseError()
+        
+        if let url = URL(string: "https://open.spotify.com") {
+            UIApplication.shared.open(url)
+        }
+    }
+}
+
 // MARK: - PlayerDelegate
 
 extension PlayerViewController: PlayerViewModelDelegate {
@@ -134,6 +144,7 @@ extension PlayerViewController: PlayerViewModelDelegate {
             askToOpenSpotify()
         default:
             print(error)
+            showAlert(title: error.title, message: error.message)
         }
     }
 }

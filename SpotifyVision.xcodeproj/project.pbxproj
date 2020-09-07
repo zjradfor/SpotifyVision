@@ -15,6 +15,8 @@
 		4B11B3422504388800EB7EF2 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B3412504388800EB7EF2 /* Album.swift */; };
 		4B11B344250438A100EB7EF2 /* SpotifyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B343250438A100EB7EF2 /* SpotifyImage.swift */; };
 		4B11B34625045E9100EB7EF2 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B34525045E9100EB7EF2 /* IntExtensions.swift */; };
+		4B11B34825054B5E00EB7EF2 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B34725054B5E00EB7EF2 /* UIViewControllerExtensions.swift */; };
+		4B11B34A2506A81A00EB7EF2 /* OpenSpotifyErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B3492506A81A00EB7EF2 /* OpenSpotifyErrorView.swift */; };
 		4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAC24C5111D0050B469 /* NetworkManager.swift */; };
 		4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAE24CB9A360050B469 /* AuthToken.swift */; };
 		4B63DFB124CE434B0050B469 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB024CE434B0050B469 /* Services.swift */; };
@@ -60,6 +62,8 @@
 		4B11B3412504388800EB7EF2 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		4B11B343250438A100EB7EF2 /* SpotifyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyImage.swift; sourceTree = "<group>"; };
 		4B11B34525045E9100EB7EF2 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
+		4B11B34725054B5E00EB7EF2 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		4B11B3492506A81A00EB7EF2 /* OpenSpotifyErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSpotifyErrorView.swift; sourceTree = "<group>"; };
 		4B63DFAC24C5111D0050B469 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4B63DFAE24CB9A360050B469 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		4B63DFB024CE434B0050B469 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				4BCC7AE624D24F6100583C62 /* PlayerView.swift */,
+				4B11B3492506A81A00EB7EF2 /* OpenSpotifyErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				4BD0881A24D0F9B700BC0B80 /* UIViewExtensions.swift */,
 				4B0243F324F82A9F00AE1EFB /* StringExtensions.swift */,
 				4B11B34525045E9100EB7EF2 /* IntExtensions.swift */,
+				4B11B34725054B5E00EB7EF2 /* UIViewControllerExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -440,6 +446,8 @@
 				4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */,
 				4B11B344250438A100EB7EF2 /* SpotifyImage.swift in Sources */,
 				4BD0881724CFB17D00BC0B80 /* AuthenticationWebViewController.swift in Sources */,
+				4B11B34A2506A81A00EB7EF2 /* OpenSpotifyErrorView.swift in Sources */,
+				4B11B34825054B5E00EB7EF2 /* UIViewControllerExtensions.swift in Sources */,
 				4B11B3422504388800EB7EF2 /* Album.swift in Sources */,
 				4B0243F424F82A9F00AE1EFB /* StringExtensions.swift in Sources */,
 				4BCC7AE924D78A2F00583C62 /* PlayerViewModel.swift in Sources */,

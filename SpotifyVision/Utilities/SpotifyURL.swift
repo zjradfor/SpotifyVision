@@ -16,6 +16,7 @@ fileprivate enum Scope: String {
     case streaming = "streaming"
     case modifyPlayback = "user-modify-playback-state"
     case readPlayback = "user-read-playback-state"
+    case readRecentlyPlayer = "user-read-recently-played"
     
     static func string(with scopes: [Scope]) -> String {
         return String(scopes.reduce("") { "\($0) \($1.rawValue)" }.dropFirst())
@@ -31,7 +32,8 @@ extension String {
         
         let scopes: [Scope] = [
             .readPrivate, .readEmail, .modifyLibrary, .modifyPlayback,
-            .readLibrary, .streaming, .modifyPlayback, .readPlayback
+            .readLibrary, .streaming, .modifyPlayback, .readPlayback,
+            .readRecentlyPlayer
         ]
         
         components.queryItems = [
