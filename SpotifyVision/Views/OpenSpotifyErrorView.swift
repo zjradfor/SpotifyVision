@@ -146,16 +146,16 @@ class OpenSpotifyErrorView: UIView {
     // MARK: - Methods
     
     private func animateViewIn() {
-        transform = CGAffineTransform(translationX: 0, y: 500)
+        containerView.transform = CGAffineTransform(translationX: 0, y: 500)
         
         UIView.animate(
-            withDuration: 0.6,
+            withDuration: 0.8,
             delay: 0,
-            usingSpringWithDamping: 0.6,
-            initialSpringVelocity: 0.2,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.1,
             options: .curveEaseOut,
             animations: {
-                self.transform = CGAffineTransform.identity
+                self.containerView.transform = CGAffineTransform.identity
         }, completion: nil)
     }
     
@@ -176,10 +176,10 @@ extension OpenSpotifyErrorView: Constructible {
     func addSubviews() {
         addSubview(dimView)
         addSubview(containerView)
-        addSubview(closeButton)
-        addSubview(titleLabel)
-        addSubview(messageLabel)
-        addSubview(openButton)
+        containerView.addSubview(closeButton)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(messageLabel)
+        containerView.addSubview(openButton)
     }
     
     func addConstraints() {

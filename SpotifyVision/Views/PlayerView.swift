@@ -48,6 +48,10 @@ class PlayerView: UIView {
             static let width: CGFloat = 50
             static let height: CGFloat = 50
         }
+        
+        enum CurrentDeviceLabel {
+            static let topMargin: CGFloat = 50
+        }
     }
     
     // MARK: - Properties
@@ -117,6 +121,16 @@ class PlayerView: UIView {
         return stackView
     }()
     
+    private var currentDeviceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        
+        return label
+    }()
+    
     // MARK: - Initialization
 
     override init(frame: CGRect = .zero) {
@@ -138,13 +152,14 @@ class PlayerView: UIView {
     
     // MARK: - Methods
     
-    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?) {
+    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?) {
         let playButtonImageType: String = isPlaying ? .pauseSymbol : .playSymbol
         let playButtonImage = UIImage(systemName: playButtonImageType)
         
         playButton.setImage(playButtonImage, for: .normal)
         trackLabel.text = trackName ?? "Nothing Playing"
         albumImage.sd_setImage(with: albumImageURL, placeholderImage: UIImage(named: "album-placeholder"))
+        currentDeviceLabel.text = "Currently playing on:\n" + (deviceName ?? "")
         
         if isPlaying {
             albumImage.rotate360Degrees()
@@ -183,6 +198,8 @@ extension PlayerView: Constructible {
         addSubview(containerView)
         containerView.addSubview(trackLabel)
         containerView.addSubview(buttonStack)
+        
+        addSubview(currentDeviceLabel)
     }
     
     func addConstraints() {
@@ -224,6 +241,11 @@ extension PlayerView: Constructible {
         nextButton.activateConstraints([
             nextButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
             nextButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
+        ])
+        
+        currentDeviceLabel.activateConstraints([
+            currentDeviceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            currentDeviceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.CurrentDeviceLabel.topMargin)
         ])
     }
 }

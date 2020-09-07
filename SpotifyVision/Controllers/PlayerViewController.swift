@@ -134,8 +134,13 @@ extension PlayerViewController: OpenSpotifyErrorViewDelegate {
 // MARK: - PlayerDelegate
 
 extension PlayerViewController: PlayerViewModelDelegate {
-    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?) {
-        playerView.updateUI(isPlaying: isPlaying, trackName: trackName, albumImageURL: albumImageURL)
+    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?) {
+        playerView.updateUI(
+            isPlaying: isPlaying,
+            trackName: trackName,
+            albumImageURL: albumImageURL,
+            deviceName: deviceName
+        )
     }
     
     func showError(_ error: APIError) {

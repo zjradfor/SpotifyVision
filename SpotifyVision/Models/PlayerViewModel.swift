@@ -11,7 +11,7 @@ import Foundation
 // MARK: -
 
 protocol PlayerViewModelDelegate: AnyObject {
-    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?)
+    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?)
     func showError(_ error: APIError)
 }
 
@@ -55,7 +55,8 @@ class PlayerViewModel {
                     strongSelf.delegate?.updateUI(
                         isPlaying: currentlyPlaying.isPlaying,
                         trackName: currentTrack.name,
-                        albumImageURL: albumImageURL
+                        albumImageURL: albumImageURL,
+                        deviceName: currentlyPlaying.device.name
                     )
                     
                     guard let trackDuration = currentlyPlaying.item?.duration,

@@ -9,5 +9,5 @@
 import Foundation
 
 struct Device: Decodable {
-    
+    let name: String
 }
