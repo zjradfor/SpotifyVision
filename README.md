@@ -20,6 +20,6 @@ Warning!!! If you don't have these credentials when you run the app, you will ge
 
 #### Screenshots
 
-<img src="Screenshots/image1.png" width="40%"> <img src="Screenshots/image2" width="40%" align="right">
+<img src="Screenshots/image1.png" width="40%"> <img src="Screenshots/image2.png" width="40%" align="right">
 
-<img src="Screenshots/image3.png" width="40%"> <img src="Screenshots/image4" width="40%" align="right">
+<img src="Screenshots/image3.png" width="40%"> <img src="Screenshots/image4.png" width="40%" align="right">
