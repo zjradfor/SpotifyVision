@@ -86,14 +86,16 @@ class PlayerViewController: UIViewController {
     private func askToOpenSpotify() {
         guard openSpotifyErrorView == nil else { return }
         
-        let errorView = OpenSpotifyErrorView()
-        errorView.delegate = self
-        
-        view.addSubview(errorView)
-        
-        errorView.pinEdges(to: view)
-        
-        openSpotifyErrorView = errorView
+        DispatchQueue.main.async {
+            let errorView = OpenSpotifyErrorView()
+            errorView.delegate = self
+            
+            self.view.addSubview(errorView)
+            
+            errorView.pinEdges(to: self.view)
+            
+            self.openSpotifyErrorView = errorView
+        }
     }
     
     // MARK: - Event Handlers
