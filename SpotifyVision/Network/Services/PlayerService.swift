@@ -16,6 +16,7 @@ protocol PlayerProvider {
     func pauseMusic(completion: @escaping (APIError?) -> ())
     func skipToNext(completion: @escaping (APIError?) -> ())
     func skipToPrevious(completion: @escaping (APIError?) -> ())
+    func getRecentlyPlayed(completion: @escaping (Result<PlayHistory?, APIError>) -> ())
 }
 
 // MARK: -
@@ -72,6 +73,20 @@ class PlayerService: PlayerProvider {
             }
             
             completion(nil)
+        }
+    }
+    
+    func getRecentlyPlayed(completion: @escaping (Result<PlayHistory?, APIError>) -> ()) {
+        URLSession.shared.request(Services.baseURL + "/player/recently-played", method: .GET, headers: Services.header) { result in
+            if case let .success(data) = result {
+                let items = try? JSONDecoder().decode(PlayHistory.self, from: data)
+                
+                completion(.success(items))
+            }
+
+            if case let .failure(error) = result {
+                completion(.failure(error))
+            }
         }
     }
 }

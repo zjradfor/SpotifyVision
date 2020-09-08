@@ -16,4 +16,5 @@ extension String {
     static let nextSymbol = "forward.end.fill"
     static let previousSymbol = "backward.end.fill"
     static let closeSymbol = "xmark.circle.fill"
+    static let listSymbol = "list.bullet"
 }

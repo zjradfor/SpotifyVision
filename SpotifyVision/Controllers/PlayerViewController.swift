@@ -62,13 +62,23 @@ class PlayerViewController: UIViewController {
     // MARK: - Methods
     
     private func openAuthPage() {
-        let authViewModel = AuthenticationWebViewModel(title: "Login", urlString: .spotifyURL)
+        let authViewModel = AuthenticationWebViewModel(title: "Login to Spotify", urlString: .spotifyURL)
         let authVC = AuthenticationWebViewController()
         authVC.viewModel = authViewModel
         authVC.didClose = updatePlayState
         authVC.isModalInPresentation = true
         
         let nav = UINavigationController(rootViewController: authVC)
+        
+        present(nav, animated: true, completion: nil)
+    }
+    
+    private func openRecentlyPlayed() {
+        let recentViewModel = RecentlyPlayedViewModel(title: "Recently Played")
+        let recentVC = RecentlyPlayedViewController()
+        recentVC.viewModel = recentViewModel
+        
+        let nav = UINavigationController(rootViewController: recentVC)
         
         present(nav, animated: true, completion: nil)
     }
@@ -111,6 +121,10 @@ extension PlayerViewController: PlayerViewDelegate {
     
     func didPressPreviousButton() {
         viewModel.skipToPreviousSong()
+    }
+    
+    func didPressRecentlyPlayed() {
+        openRecentlyPlayed()
     }
 }
 

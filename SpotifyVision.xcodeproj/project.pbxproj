@@ -17,6 +17,10 @@
 		4B11B34625045E9100EB7EF2 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B34525045E9100EB7EF2 /* IntExtensions.swift */; };
 		4B11B34825054B5E00EB7EF2 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B34725054B5E00EB7EF2 /* UIViewControllerExtensions.swift */; };
 		4B11B34A2506A81A00EB7EF2 /* OpenSpotifyErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11B3492506A81A00EB7EF2 /* OpenSpotifyErrorView.swift */; };
+		4B4D5A072506FFF700BE9FFC /* PlayHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D5A062506FFF700BE9FFC /* PlayHistory.swift */; };
+		4B4D5A09250704E700BE9FFC /* PlayHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D5A08250704E700BE9FFC /* PlayHistoryItem.swift */; };
+		4B4D5A0B25070B5000BE9FFC /* RecentlyPlayedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D5A0A25070B5000BE9FFC /* RecentlyPlayedViewController.swift */; };
+		4B4D5A0D25070CE000BE9FFC /* RecentlyPlayedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D5A0C25070CE000BE9FFC /* RecentlyPlayedViewModel.swift */; };
 		4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAC24C5111D0050B469 /* NetworkManager.swift */; };
 		4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFAE24CB9A360050B469 /* AuthToken.swift */; };
 		4B63DFB124CE434B0050B469 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB024CE434B0050B469 /* Services.swift */; };
@@ -64,6 +68,10 @@
 		4B11B34525045E9100EB7EF2 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		4B11B34725054B5E00EB7EF2 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4B11B3492506A81A00EB7EF2 /* OpenSpotifyErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSpotifyErrorView.swift; sourceTree = "<group>"; };
+		4B4D5A062506FFF700BE9FFC /* PlayHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHistory.swift; sourceTree = "<group>"; };
+		4B4D5A08250704E700BE9FFC /* PlayHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHistoryItem.swift; sourceTree = "<group>"; };
+		4B4D5A0A25070B5000BE9FFC /* RecentlyPlayedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedViewController.swift; sourceTree = "<group>"; };
+		4B4D5A0C25070CE000BE9FFC /* RecentlyPlayedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedViewModel.swift; sourceTree = "<group>"; };
 		4B63DFAC24C5111D0050B469 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4B63DFAE24CB9A360050B469 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		4B63DFB024CE434B0050B469 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -203,6 +211,7 @@
 			children = (
 				4BD0881824CFB34600BC0B80 /* AuthenticationWebViewModel.swift */,
 				4BCC7AE824D78A2F00583C62 /* PlayerViewModel.swift */,
+				4B4D5A0C25070CE000BE9FFC /* RecentlyPlayedViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 			children = (
 				4BD0881624CFB17D00BC0B80 /* AuthenticationWebViewController.swift */,
 				4B7C8F58248EFA9100455299 /* PlayerViewController.swift */,
+				4B4D5A0A25070B5000BE9FFC /* RecentlyPlayedViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -233,6 +243,8 @@
 				4B11B33D2504385A00EB7EF2 /* Context.swift */,
 				4BD0881024CF86BD00BC0B80 /* CurrentlyPlaying.swift */,
 				4B11B33B2504383F00EB7EF2 /* Device.swift */,
+				4B4D5A062506FFF700BE9FFC /* PlayHistory.swift */,
+				4B4D5A08250704E700BE9FFC /* PlayHistoryItem.swift */,
 				4B63DFB324CE43DD0050B469 /* RefreshToken.swift */,
 				4B11B343250438A100EB7EF2 /* SpotifyImage.swift */,
 				4B11B33F2504387200EB7EF2 /* Track.swift */,
@@ -437,6 +449,7 @@
 				4BD0880C24CE751800BC0B80 /* AuthorizationService.swift in Sources */,
 				4B7C8F59248EFA9100455299 /* PlayerViewController.swift in Sources */,
 				4BCC7AE724D24F6100583C62 /* PlayerView.swift in Sources */,
+				4B4D5A072506FFF700BE9FFC /* PlayHistory.swift in Sources */,
 				4B7C8F55248EFA9100455299 /* AppDelegate.swift in Sources */,
 				4BD0881F24D0FBCB00BC0B80 /* Colours.swift in Sources */,
 				4BD0881524CF9F4400BC0B80 /* UserDefaultsExtensions.swift in Sources */,
@@ -446,6 +459,7 @@
 				4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */,
 				4B11B344250438A100EB7EF2 /* SpotifyImage.swift in Sources */,
 				4BD0881724CFB17D00BC0B80 /* AuthenticationWebViewController.swift in Sources */,
+				4B4D5A0D25070CE000BE9FFC /* RecentlyPlayedViewModel.swift in Sources */,
 				4B11B34A2506A81A00EB7EF2 /* OpenSpotifyErrorView.swift in Sources */,
 				4B11B34825054B5E00EB7EF2 /* UIViewControllerExtensions.swift in Sources */,
 				4B11B3422504388800EB7EF2 /* Album.swift in Sources */,
@@ -454,10 +468,12 @@
 				4BD0881924CFB34600BC0B80 /* AuthenticationWebViewModel.swift in Sources */,
 				4B63DFB424CE43DD0050B469 /* RefreshToken.swift in Sources */,
 				4B63DFB624CE441E0050B469 /* PlayerService.swift in Sources */,
+				4B4D5A0B25070B5000BE9FFC /* RecentlyPlayedViewController.swift in Sources */,
 				4BD0881D24D0FAA000BC0B80 /* Constructible.swift in Sources */,
 				4B11B34625045E9100EB7EF2 /* IntExtensions.swift in Sources */,
 				4B63DFAF24CB9A360050B469 /* AuthToken.swift in Sources */,
 				4BD0881B24D0F9B700BC0B80 /* UIViewExtensions.swift in Sources */,
+				4B4D5A09250704E700BE9FFC /* PlayHistoryItem.swift in Sources */,
 				4B7C8F57248EFA9100455299 /* SceneDelegate.swift in Sources */,
 				4B11B33E2504385A00EB7EF2 /* Context.swift in Sources */,
 				4B11B33C2504383F00EB7EF2 /* Device.swift in Sources */,

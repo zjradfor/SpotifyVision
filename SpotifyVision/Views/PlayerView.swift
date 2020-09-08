@@ -15,6 +15,7 @@ protocol PlayerViewDelegate: AnyObject {
     func didPressPlayButton()
     func didPressNextButton()
     func didPressPreviousButton()
+    func didPressRecentlyPlayed()
 }
 
 // MARK: -
@@ -51,6 +52,13 @@ class PlayerView: UIView {
         
         enum CurrentDeviceLabel {
             static let topMargin: CGFloat = 50
+        }
+        
+        enum RecentlyPlayedButton {
+            static let width: CGFloat = 44
+            static let height: CGFloat = 44
+            static let bottomMargin: CGFloat = -50
+            static let rightMargin: CGFloat = -20
         }
     }
     
@@ -131,6 +139,17 @@ class PlayerView: UIView {
         return label
     }()
     
+    private var recentlyPlayedButton: UIButton = {
+        let button = UIButton(type: .system)
+        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 24)
+        let image = UIImage(systemName: .listSymbol, withConfiguration: symbolConfig)
+        let whiteImage = image?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        button.setImage(whiteImage, for: .normal)
+        button.addTarget(self, action: #selector(recentlyPlayedButtonPressed), for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: - Initialization
 
     override init(frame: CGRect = .zero) {
@@ -184,6 +203,11 @@ class PlayerView: UIView {
     private func nextButtonPressed() {
         delegate?.didPressNextButton()
     }
+    
+    @objc
+    private func recentlyPlayedButtonPressed() {
+        delegate?.didPressRecentlyPlayed()
+    }
 }
 
 // MARK: -
@@ -200,6 +224,7 @@ extension PlayerView: Constructible {
         containerView.addSubview(buttonStack)
         
         addSubview(currentDeviceLabel)
+        addSubview(recentlyPlayedButton)
     }
     
     func addConstraints() {
@@ -246,6 +271,13 @@ extension PlayerView: Constructible {
         currentDeviceLabel.activateConstraints([
             currentDeviceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             currentDeviceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.CurrentDeviceLabel.topMargin)
+        ])
+        
+        recentlyPlayedButton.activateConstraints([
+            recentlyPlayedButton.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.RecentlyPlayedButton.rightMargin),
+            recentlyPlayedButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Dimensions.RecentlyPlayedButton.bottomMargin),
+            recentlyPlayedButton.widthAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.width),
+            recentlyPlayedButton.heightAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.height)
         ])
     }
 }

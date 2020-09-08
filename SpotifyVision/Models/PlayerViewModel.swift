@@ -75,7 +75,7 @@ class PlayerViewModel {
     func playMusic() {
         provider.playMusic { [weak self] error in
             guard let strongSelf = self else { return }
-            
+
             if let error = error {
                 strongSelf.delegate?.showError(error)
             } else {
