@@ -45,6 +45,7 @@
 		4BD0881D24D0FAA000BC0B80 /* Constructible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD0881C24D0FAA000BC0B80 /* Constructible.swift */; };
 		4BD0881F24D0FBCB00BC0B80 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD0881E24D0FBCB00BC0B80 /* Colours.swift */; };
 		4BE297762598409100DC6DDD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BE297752598409100DC6DDD /* Localizable.strings */; };
+		4BE297DA2599202300DC6DDD /* PlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE297D92599202300DC6DDD /* PlayerControlView.swift */; };
 		4BE75A3F24BD3151009475FA /* SpotifyCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE75A3E24BD3151009475FA /* SpotifyCredentials.swift */; };
 		9B47B77591436CC9367C3430 /* Pods_SpotifyVisionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA7E7D135285A2A1495DA9 /* Pods_SpotifyVisionTests.framework */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		4BD0881C24D0FAA000BC0B80 /* Constructible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructible.swift; sourceTree = "<group>"; };
 		4BD0881E24D0FBCB00BC0B80 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		4BE297752598409100DC6DDD /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		4BE297D92599202300DC6DDD /* PlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlView.swift; sourceTree = "<group>"; };
 		4BE75A3E24BD3151009475FA /* SpotifyCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyCredentials.swift; sourceTree = "<group>"; };
 		4E7952E93AEBB9BA829D62CA /* Pods-SpotifyVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyVision.release.xcconfig"; path = "Target Support Files/Pods-SpotifyVision/Pods-SpotifyVision.release.xcconfig"; sourceTree = "<group>"; };
 		90AA7E7D135285A2A1495DA9 /* Pods_SpotifyVisionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotifyVisionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,7 @@
 			children = (
 				4BCC7AE624D24F6100583C62 /* PlayerView.swift */,
 				4B11B3492506A81A00EB7EF2 /* OpenSpotifyErrorView.swift */,
+				4BE297D92599202300DC6DDD /* PlayerControlView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				4BD0881524CF9F4400BC0B80 /* UserDefaults+Extensions.swift in Sources */,
 				4BD0881324CF99FE00BC0B80 /* SpotifyURL.swift in Sources */,
 				4B63DFB124CE434B0050B469 /* Services.swift in Sources */,
+				4BE297DA2599202300DC6DDD /* PlayerControlView.swift in Sources */,
 				4BD0881124CF86BD00BC0B80 /* CurrentlyPlaying.swift in Sources */,
 				4B63DFAD24C5111D0050B469 /* NetworkManager.swift in Sources */,
 				4B11B344250438A100EB7EF2 /* SpotifyImage.swift in Sources */,

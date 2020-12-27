@@ -37,7 +37,7 @@ class PlayerViewModel {
     
     func getCurrentlyPlaying() {
         // Delay getting the current player to allow other actions to be synced on Spotify
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // NOTE: The player API is flakey and isn't always return the correct values
             self.provider.getCurrentPlayer { [weak self] result in
                 guard let strongSelf = self else { return }
                 

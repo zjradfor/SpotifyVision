@@ -29,25 +29,10 @@ class PlayerView: UIView {
             static let height: CGFloat = 450
         }
         
-        enum ContainerView {
+        enum ControlView {
             static let height: CGFloat = 160
             static let leftMargin: CGFloat = 20
             static let rightMargin: CGFloat = -20
-        }
-        
-        enum TrackLabel {
-            static let topMargin: CGFloat = 20
-            static let leftMargin: CGFloat = 25
-            static let rightMargin: CGFloat = -25
-        }
-        
-        enum ButtonStack {
-            static let centerYMargin: CGFloat = 20
-        }
-        
-        enum ControlButtons {
-            static let width: CGFloat = 50
-            static let height: CGFloat = 50
         }
         
         enum CurrentDeviceLabel {
@@ -77,56 +62,11 @@ class PlayerView: UIView {
         return imageView
     }()
     
-    private var containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .playerColour
+    private var controlView: PlayerControlView = {
+        let view = PlayerControlView()
         view.layer.cornerRadius = 8
         
         return view
-    }()
-    
-    private var trackLabel: UILabel = {
-        let label = UILabel()
-        label.text = "NOTHING_PLAYING".localized
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        
-        return label
-    }()
-
-    private var playButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(systemName: .playSymbol)
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    private var previousButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(systemName: .previousSymbol)
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(previousButtonPressed), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    private var nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(systemName: .nextSymbol)
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    private var buttonStack: UIStackView = {
-        let stackView = UIStackView()
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 20
-        
-        return stackView
     }()
     
     private var currentDeviceLabel: UILabel = {
@@ -158,6 +98,8 @@ class PlayerView: UIView {
         backgroundColor = .spotifyBlack
         
         setUp()
+        
+        controlView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -172,11 +114,8 @@ class PlayerView: UIView {
     // MARK: - Methods
     
     func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?) {
-        let playButtonImageType: String = isPlaying ? .pauseSymbol : .playSymbol
-        let playButtonImage = UIImage(systemName: playButtonImageType)
+        controlView.updateUI(isPlaying: isPlaying, trackName: trackName)
         
-        playButton.setImage(playButtonImage, for: .normal)
-        trackLabel.text = trackName ?? "NOTHING_PLAYING".localized
         albumImage.sd_setImage(with: albumImageURL, placeholderImage: UIImage(named: "album-placeholder"))
         currentDeviceLabel.text = "CURRENTLY_PLAYING_ON".localized + "\n \(deviceName ?? "")"
         
@@ -190,23 +129,24 @@ class PlayerView: UIView {
     // MARK: - Actions
     
     @objc
-    private func playButtonPressed() {
+    private func recentlyPlayedButtonPressed() {
+        delegate?.didPressRecentlyPlayed()
+    }
+}
+
+// MARK: - PlayerControlViewDelegate
+
+extension PlayerView: PlayerControlViewDelegate {
+    func didPressPlayButton() {
         delegate?.didPressPlayButton()
     }
     
-    @objc
-    private func previousButtonPressed() {
-        delegate?.didPressPreviousButton()
-    }
-    
-    @objc
-    private func nextButtonPressed() {
+    func didPressNextButton() {
         delegate?.didPressNextButton()
     }
     
-    @objc
-    private func recentlyPlayedButtonPressed() {
-        delegate?.didPressRecentlyPlayed()
+    func didPressPreviousButton() {
+        delegate?.didPressPreviousButton()
     }
 }
 
@@ -214,15 +154,8 @@ class PlayerView: UIView {
 
 extension PlayerView: Constructible {
     func addSubviews() {
-        buttonStack.addArrangedSubview(previousButton)
-        buttonStack.addArrangedSubview(playButton)
-        buttonStack.addArrangedSubview(nextButton)
-        
         addSubview(albumImage)
-        addSubview(containerView)
-        containerView.addSubview(trackLabel)
-        containerView.addSubview(buttonStack)
-        
+        addSubview(controlView)
         addSubview(currentDeviceLabel)
         addSubview(recentlyPlayedButton)
     }
@@ -235,37 +168,11 @@ extension PlayerView: Constructible {
             albumImage.heightAnchor.constraint(equalToConstant: Dimensions.AlbumImage.height)
         ])
         
-        containerView.activateConstraints([
-            containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimensions.ContainerView.leftMargin),
-            containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.ContainerView.rightMargin),
-            containerView.heightAnchor.constraint(equalToConstant: Dimensions.ContainerView.height)
-        ])
-        
-        trackLabel.activateConstraints([
-            trackLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: Dimensions.TrackLabel.leftMargin),
-            trackLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: Dimensions.TrackLabel.rightMargin),
-            trackLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Dimensions.TrackLabel.topMargin)
-        ])
-        
-        buttonStack.activateConstraints([
-            buttonStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: Dimensions.ButtonStack.centerYMargin),
-            buttonStack.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
-        ])
-        
-        previousButton.activateConstraints([
-            previousButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
-            previousButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
-        ])
-        
-        playButton.activateConstraints([
-            playButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
-            playButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
-        ])
-        
-        nextButton.activateConstraints([
-            nextButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
-            nextButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
+        controlView.activateConstraints([
+            controlView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            controlView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimensions.ControlView.leftMargin),
+            controlView.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.ControlView.rightMargin),
+            controlView.heightAnchor.constraint(equalToConstant: Dimensions.ControlView.height)
         ])
         
         currentDeviceLabel.activateConstraints([
