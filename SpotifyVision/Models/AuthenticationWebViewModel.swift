@@ -12,11 +12,9 @@ class AuthenticationWebViewModel {
     // MARK: - Properties
     
     var title: String
-    
     var urlString: String
     
     private let userDefaults = UserDefaults.standard
-    
     private let provider: AuthorizationProvider
     
     // MARK: - Initialization

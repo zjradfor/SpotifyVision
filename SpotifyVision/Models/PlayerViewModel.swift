@@ -21,11 +21,10 @@ class PlayerViewModel {
     // MARK: - Properties
     
     weak var delegate: PlayerViewModelDelegate?
-    
     var isPlaying: Bool = false
     
-    private var durationTimer: Timer?
-    
+    private var trackDurationTimer: Timer?
+
     private let provider: PlayerProvider
     
     // MARK: - Initialization
@@ -63,7 +62,7 @@ class PlayerViewModel {
                         let progress = currentlyPlaying.progress else { return }
                     
                     let timeRemaining = (trackDuration - progress).msToSeconds
-                    strongSelf.startTimer(for: timeRemaining)
+                    strongSelf.startTrackDurationTimer(for: timeRemaining)
                     
                 case .failure(let error):
                     strongSelf.delegate?.showError(error)
@@ -120,10 +119,10 @@ class PlayerViewModel {
         }
     }
     
-    private func startTimer(for seconds: Double) {
-        durationTimer?.invalidate()
+    private func startTrackDurationTimer(for seconds: Double) {
+        trackDurationTimer?.invalidate()
         
-        durationTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { [weak self] _ in
+        trackDurationTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { [weak self] _ in
             guard let strongSelf = self else { return }
             
             strongSelf.getCurrentlyPlaying()

@@ -26,7 +26,6 @@ class RecentlyPlayedViewController: UIViewController {
         
         title = viewModel.title
         
-        
         getRecentlyPlayed()
     }
     

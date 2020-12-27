@@ -14,11 +14,9 @@ class PlayerViewController: UIViewController {
     var viewModel: PlayerViewModel!
     
     private var playerView: PlayerView!
-    
     private var openSpotifyErrorView: OpenSpotifyErrorView?
     
     private let userDefaults = UserDefaults.standard
-    
     private let notificationCenter = NotificationCenter.default
     
     // MARK: - Lifecyle Methods
