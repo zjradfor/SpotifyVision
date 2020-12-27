@@ -60,7 +60,7 @@ class PlayerViewController: UIViewController {
     // MARK: - Methods
     
     private func openAuthPage() {
-        let authViewModel = AuthenticationWebViewModel(title: "Login to Spotify", urlString: .spotifyURL)
+        let authViewModel = AuthenticationWebViewModel(title: "LOGIN_TO_SPOTIFY".localized, urlString: .spotifyURL)
         let authVC = AuthenticationWebViewController()
         authVC.viewModel = authViewModel
         authVC.didClose = updatePlayState
@@ -72,7 +72,7 @@ class PlayerViewController: UIViewController {
     }
     
     private func openRecentlyPlayed() {
-        let recentViewModel = RecentlyPlayedViewModel(title: "Recently Played")
+        let recentViewModel = RecentlyPlayedViewModel(title: "RECENTLY_PLAYED".localized)
         let recentVC = RecentlyPlayedViewController()
         recentVC.viewModel = recentViewModel
         

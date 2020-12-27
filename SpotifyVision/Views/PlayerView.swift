@@ -87,7 +87,7 @@ class PlayerView: UIView {
     
     private var trackLabel: UILabel = {
         let label = UILabel()
-        label.text = "Nothing Playing"
+        label.text = "NOTHING_PLAYING".localized
         label.textAlignment = .center
         label.numberOfLines = 0
         
@@ -176,9 +176,9 @@ class PlayerView: UIView {
         let playButtonImage = UIImage(systemName: playButtonImageType)
         
         playButton.setImage(playButtonImage, for: .normal)
-        trackLabel.text = trackName ?? "Nothing Playing"
+        trackLabel.text = trackName ?? "NOTHING_PLAYING".localized
         albumImage.sd_setImage(with: albumImageURL, placeholderImage: UIImage(named: "album-placeholder"))
-        currentDeviceLabel.text = "Currently playing on:\n" + (deviceName ?? "")
+        currentDeviceLabel.text = "CURRENTLY_PLAYING_ON".localized + "\n \(deviceName ?? "")"
         
         if isPlaying {
             albumImage.rotate360Degrees()

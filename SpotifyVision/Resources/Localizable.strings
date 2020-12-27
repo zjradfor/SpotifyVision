@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  SpotifyVision
+
+  Created by Zach Radford on 2020-12-26.
+  Copyright © 2020 Zach Radford. All rights reserved.
+*/
+
+"NOTHING_PLAYING" = "Nothing Playing";
+"CURRENTLY_PLAYING_ON" = "Currently playing on:";
+"NO_PLAYER_FOUND_TITLE" = "No Player Found!";
+"NO_PLAYER_FOUND_MESSAGE" = "Open Spotify and start playing something.";
+"OPEN_SPOTIFY" = "Open Spotify";
+"LOGIN_TO_SPOTIFY" = "Login to Spotify";
+"RECENTLY_PLAYED" = "Recently Played";
+
+"GENERAL_ERROR_TITLE" = "Error";
+"UNAUTHORIZED_ERROR_TITLE" = "Unauthorized";
+"FORBIDDEN_ERROR_TITLE" = "Forbidden";
+"RATE_LIMITED_ERROR_TITLE" = "Rate Limited";
+"SERVER_ERROR_TITLE" = "Server Error";
+
+"GENERAL_ERROR_MESSAGE" = "Something went wrong, please try again later.";
+"UNAUTHORIZED_ERROR_MESSAGE" = "You are not authorized with Spotify.";
+"FORBIDDEN_ERROR_MESSAGE" = "Services not available.";
+"RATE_LIMITED_ERROR_MESSAGE" = "You've exceeded the current number of requests, please try again later.";

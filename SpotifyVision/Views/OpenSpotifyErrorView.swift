@@ -80,7 +80,7 @@ class OpenSpotifyErrorView: UIView {
     
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "No Player Found!"
+        label.text = "NO_PLAYER_FOUND_TITLE".localized
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
@@ -90,7 +90,7 @@ class OpenSpotifyErrorView: UIView {
     
     private var messageLabel: UILabel = {
         let label = UILabel()
-        label.text = "Open Spotify and start playing something."
+        label.text = "NO_PLAYER_FOUND_MESSAGE".localized
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 16)
@@ -111,7 +111,7 @@ class OpenSpotifyErrorView: UIView {
     private var openButton: UIButton = {
         let button = UIButton(type: .system)
         let image = UIImage(systemName: .closeSymbol)
-        button.setTitle("Open Spotify", for: .normal)
+        button.setTitle("OPEN_SPOTIFY".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .spotifyGreen
         button.layer.cornerRadius = 24
