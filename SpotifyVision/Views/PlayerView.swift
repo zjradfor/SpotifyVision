@@ -30,9 +30,7 @@ class PlayerView: UIView {
         }
         
         enum ControlView {
-            static let height: CGFloat = 160
-            static let leftMargin: CGFloat = 20
-            static let rightMargin: CGFloat = -20
+            static let height: CGFloat = 290
         }
         
         enum CurrentDeviceLabel {
@@ -64,7 +62,7 @@ class PlayerView: UIView {
     
     private var controlView: PlayerControlView = {
         let view = PlayerControlView()
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 22
         
         return view
     }()
@@ -81,10 +79,8 @@ class PlayerView: UIView {
     
     private var recentlyPlayedButton: UIButton = {
         let button = UIButton(type: .system)
-        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 24)
-        let image = UIImage(systemName: .listSymbol, withConfiguration: symbolConfig)
-        let whiteImage = image?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        button.setImage(whiteImage, for: .normal)
+        let image = SFSymbols.list.build()
+        button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(recentlyPlayedButtonPressed), for: .touchUpInside)
         
         return button
@@ -95,7 +91,7 @@ class PlayerView: UIView {
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
-        backgroundColor = .spotifyBlack
+        backgroundColor = .lightGrayColor
         
         setUp()
         
@@ -169,9 +165,9 @@ extension PlayerView: Constructible {
         ])
         
         controlView.activateConstraints([
-            controlView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            controlView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimensions.ControlView.leftMargin),
-            controlView.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.ControlView.rightMargin),
+            controlView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            controlView.leftAnchor.constraint(equalTo: leftAnchor),
+            controlView.rightAnchor.constraint(equalTo: rightAnchor),
             controlView.heightAnchor.constraint(equalToConstant: Dimensions.ControlView.height)
         ])
         

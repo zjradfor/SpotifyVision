@@ -32,6 +32,7 @@
 		4B7C8F5E248EFA9200455299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B7C8F5D248EFA9200455299 /* Assets.xcassets */; };
 		4B7C8F61248EFA9200455299 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B7C8F5F248EFA9200455299 /* LaunchScreen.storyboard */; };
 		4B7C8F6C248EFA9200455299 /* SpotifyVisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F6B248EFA9200455299 /* SpotifyVisionTests.swift */; };
+		4B99949325B11C7700CC325A /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99949225B11C7700CC325A /* SFSymbols.swift */; };
 		4BCC7AE724D24F6100583C62 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC7AE624D24F6100583C62 /* PlayerView.swift */; };
 		4BCC7AE924D78A2F00583C62 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC7AE824D78A2F00583C62 /* PlayerViewModel.swift */; };
 		4BD0880C24CE751800BC0B80 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD0880B24CE751800BC0B80 /* AuthorizationService.swift */; };
@@ -89,6 +90,7 @@
 		4B7C8F67248EFA9200455299 /* SpotifyVisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyVisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7C8F6B248EFA9200455299 /* SpotifyVisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyVisionTests.swift; sourceTree = "<group>"; };
 		4B7C8F6D248EFA9200455299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B99949225B11C7700CC325A /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		4BCC7AE624D24F6100583C62 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		4BCC7AE824D78A2F00583C62 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		4BD0880B24CE751800BC0B80 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				4BCC7AED24D888A700583C62 /* Controllers */,
 				4B63DFB224CE435F0050B469 /* Network */,
 				4BD0882024D0FDB800BC0B80 /* Utilities */,
+				4B99948F25B11BF500CC325A /* UI Helpers */,
 				4BE297C5259840F100DC6DDD /* Resources */,
 			);
 			path = SpotifyVision;
@@ -209,6 +212,18 @@
 				4B7C8F6D248EFA9200455299 /* Info.plist */,
 			);
 			path = SpotifyVisionTests;
+			sourceTree = "<group>";
+		};
+		4B99948F25B11BF500CC325A /* UI Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4BD0881E24D0FBCB00BC0B80 /* Colours.swift */,
+				4BD0881C24D0FAA000BC0B80 /* Constructible.swift */,
+				4BD0881A24D0F9B700BC0B80 /* UIView+Extensions.swift */,
+				4B11B34725054B5E00EB7EF2 /* UIViewController+Extensions.swift */,
+				4B99949225B11C7700CC325A /* SFSymbols.swift */,
+			);
+			path = "UI Helpers";
 			sourceTree = "<group>";
 		};
 		4BCC7AEB24D8888F00583C62 /* Models */ = {
@@ -264,12 +279,8 @@
 				4BE75A3E24BD3151009475FA /* SpotifyCredentials.swift */,
 				4BD0881224CF99FE00BC0B80 /* SpotifyURL.swift */,
 				4BD0881424CF9F4400BC0B80 /* UserDefaults+Extensions.swift */,
-				4BD0881E24D0FBCB00BC0B80 /* Colours.swift */,
-				4BD0881C24D0FAA000BC0B80 /* Constructible.swift */,
-				4BD0881A24D0F9B700BC0B80 /* UIView+Extensions.swift */,
 				4B0243F324F82A9F00AE1EFB /* String+Extensions.swift */,
 				4B11B34525045E9100EB7EF2 /* Int+Extensions.swift */,
-				4B11B34725054B5E00EB7EF2 /* UIViewController+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -466,6 +477,7 @@
 				4BCC7AE724D24F6100583C62 /* PlayerView.swift in Sources */,
 				4B4D5A072506FFF700BE9FFC /* PlayHistory.swift in Sources */,
 				4B7C8F55248EFA9100455299 /* AppDelegate.swift in Sources */,
+				4B99949325B11C7700CC325A /* SFSymbols.swift in Sources */,
 				4BD0881F24D0FBCB00BC0B80 /* Colours.swift in Sources */,
 				4BD0881524CF9F4400BC0B80 /* UserDefaults+Extensions.swift in Sources */,
 				4BD0881324CF99FE00BC0B80 /* SpotifyURL.swift in Sources */,

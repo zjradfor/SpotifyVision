@@ -29,12 +29,12 @@ class PlayerControlView: UIView {
         }
         
         enum ButtonStack {
-            static let centerYMargin: CGFloat = 20
+            static let centerYMargin: CGFloat = -45
         }
         
         enum ControlButtons {
-            static let width: CGFloat = 50
-            static let height: CGFloat = 50
+            static let width: CGFloat = 80
+            static let height: CGFloat = 80
         }
     }
     
@@ -55,7 +55,7 @@ class PlayerControlView: UIView {
     
     private var playButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: .playSymbol)
+        let image = SFSymbols.play.build()
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
         
@@ -64,7 +64,7 @@ class PlayerControlView: UIView {
     
     private var previousButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: .previousSymbol)
+        let image = SFSymbols.previous.build()
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(previousButtonPressed), for: .touchUpInside)
         
@@ -73,7 +73,7 @@ class PlayerControlView: UIView {
     
     private var nextButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: .nextSymbol)
+        let image = SFSymbols.next.build()
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
         
@@ -83,7 +83,7 @@ class PlayerControlView: UIView {
     private var buttonStack: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .equalSpacing
-        stackView.spacing = 20
+        stackView.spacing = 36
         
         return stackView
     }()
@@ -93,9 +93,11 @@ class PlayerControlView: UIView {
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
-        backgroundColor = .playerColour
+        backgroundColor = .darkGrayColor
         
         setUp()
+        
+        trackLabel.isHidden = true // TODO
     }
     
     required init?(coder: NSCoder) {
@@ -110,10 +112,9 @@ class PlayerControlView: UIView {
     // MARK: - Methods
     
     func updateUI(isPlaying: Bool, trackName: String?) {
-        let playButtonImageType: String = isPlaying ? .pauseSymbol : .playSymbol
-        let playButtonImage = UIImage(systemName: playButtonImageType)
-        
-        playButton.setImage(playButtonImage, for: .normal)
+        let controlImage: UIImage? = isPlaying ? SFSymbols.pause.build() : SFSymbols.play.build()
+
+        playButton.setImage(controlImage, for: .normal)
         trackLabel.text = trackName ?? "NOTHING_PLAYING".localized
     }
     

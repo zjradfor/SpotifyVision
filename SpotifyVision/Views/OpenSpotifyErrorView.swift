@@ -100,9 +100,8 @@ class OpenSpotifyErrorView: UIView {
     
     private var closeButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: .closeSymbol)
-        let whiteImage = image?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        button.setImage(whiteImage, for: .normal)
+        let image = SFSymbols.close.build()
+        button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
         
         return button
@@ -110,7 +109,6 @@ class OpenSpotifyErrorView: UIView {
     
     private var openButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: .closeSymbol)
         button.setTitle("OPEN_SPOTIFY".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .spotifyGreen
