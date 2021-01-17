@@ -12,7 +12,7 @@ enum HTTPRequestMethod: String {
     case GET, POST, PUT, DELETE
 }
 
-fileprivate enum HTTPResponseStatusCode {
+private enum HTTPResponseStatusCode {
     case OK(Int)
     case REDIRECTION(Int)
     case ERROR(Int)
@@ -51,7 +51,7 @@ extension URLSession {
                  method: HTTPRequestMethod = .GET,
                  parameters: HTTPRequestParameters? = nil,
                  headers: HTTPRequestHeaders? = nil,
-                 completionHandler: @escaping (Result<Data, APIError>) -> ()) {
+                 completionHandler: @escaping (Result<Data, APIError>) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         var request = URLRequest(url: url)
@@ -67,14 +67,14 @@ extension URLSession {
             }
         }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, response, _ in
             guard let data = data,
                 let response = response as? HTTPURLResponse,
                 let status = HTTPResponseStatusCode(rawValue: response.statusCode) else {
                 return
             }
             
-            /// For Debugging
+            // For Debugging
             /*
              do {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
@@ -85,7 +85,7 @@ extension URLSession {
              */
             
             switch status {
-            case .OK(_):
+            case .OK:
                 DispatchQueue.main.async { completionHandler(.success(data)) }
                 
             case .ERROR(400):
@@ -95,8 +95,8 @@ extension URLSession {
                 print("needs refresh token")
                 AuthorizationService().refreshToken { result in
                     if result {
-                        let token: String = UserDefaults.standard.accessToken!
-                        let newHeader: HTTPRequestHeaders = ["Authorization" : "Bearer \(token)"]
+                        let token: String = UserDefaults.standard.accessToken ?? ""
+                        let newHeader: HTTPRequestHeaders = ["Authorization": "Bearer \(token)"]
                         self.request(urlString, method: method, parameters: parameters, headers: newHeader) { result in
                             if case let .success(newData) = result {
                                 DispatchQueue.main.async { completionHandler(.success(newData)) }

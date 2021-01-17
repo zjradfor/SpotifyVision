@@ -154,7 +154,7 @@ class OpenSpotifyErrorView: UIView {
             options: .curveEaseOut,
             animations: {
                 self.containerView.transform = CGAffineTransform.identity
-        }, completion: nil)
+            })
     }
     
     // MARK: - Actions

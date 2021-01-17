@@ -14,6 +14,6 @@ class Services {
     static var header: HTTPRequestHeaders {
         guard let token: String = UserDefaults.standard.accessToken else { return [:] }
         
-        return ["Authorization" : "Bearer \(token)"]
+        return ["Authorization": "Bearer \(token)"]
     }
 }

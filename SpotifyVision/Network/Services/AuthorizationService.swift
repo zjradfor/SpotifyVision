@@ -11,8 +11,8 @@ import Foundation
 // MARK: -
 
 protocol AuthorizationProvider {
-    func getToken(with code: String, completion: @escaping (Result<AuthToken, APIError>) -> ())
-    func refreshToken(completion: @escaping (Bool) -> ())
+    func getToken(with code: String, completion: @escaping (Result<AuthToken, APIError>) -> Void)
+    func refreshToken(completion: @escaping (Bool) -> Void)
 }
 
 // MARK: -
@@ -23,10 +23,10 @@ class AuthorizationService: AuthorizationProvider {
         let clientSecret = SpotifyCredentials().clientSecret
         guard let data = "\(clientID):\(clientSecret)".data(using: .utf8) else { return [:] }
 
-        return ["Authorization" : "Basic \(data.base64EncodedString(options: []))"]
+        return ["Authorization": "Basic \(data.base64EncodedString(options: []))"]
     }
     
-    func getToken(with code: String, completion: @escaping (Result<AuthToken, APIError>) -> ()) {
+    func getToken(with code: String, completion: @escaping (Result<AuthToken, APIError>) -> Void) {
         let parameters: HTTPRequestParameters = ["client_id": SpotifyCredentials().clientID,
                                                  "client_secret": SpotifyCredentials().clientSecret,
                                                  "grant_type": "authorization_code",
@@ -44,13 +44,13 @@ class AuthorizationService: AuthorizationProvider {
         }
     }
     
-    func refreshToken(completion: @escaping (Bool) -> ()) {
+    func refreshToken(completion: @escaping (Bool) -> Void) {
         guard let refreshToken = UserDefaults.standard.refreshToken else {
             completion(false)
             return
         }
         
-        let parameters: HTTPRequestParameters = ["grant_type":"refresh_token", "refresh_token": refreshToken]
+        let parameters: HTTPRequestParameters = ["grant_type": "refresh_token", "refresh_token": refreshToken]
         
         URLSession.shared.request("https://accounts.spotify.com/api/token", method: .POST, parameters: parameters, headers: authorizationHeader) { result in
             if case let .success(data) = result {

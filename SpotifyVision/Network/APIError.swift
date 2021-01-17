@@ -9,7 +9,7 @@
 import Foundation
 
 enum APIError: Error {
-    case badRequest //400
+    case badRequest // 400
     case unauthorized // 401
     case forbidden // 403
     case notFound // 404

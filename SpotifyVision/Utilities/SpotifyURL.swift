@@ -8,7 +8,7 @@
 
 import Foundation
 
-fileprivate enum Scope: String {
+private enum Scope: String {
     case readPrivate = "user-read-private"
     case readEmail = "user-read-email"
     case modifyLibrary = "user-library-modify"

@@ -11,9 +11,8 @@ import UIKit
 class PlayerViewController: UIViewController {
     // MARK: - Properties
     
-    var viewModel: PlayerViewModel!
-    
-    private var playerView: PlayerView!
+    private let viewModel = PlayerViewModel()
+    private let playerView = PlayerView()
     private var openSpotifyErrorView: OpenSpotifyErrorView?
     
     private let userDefaults = UserDefaults.standard
@@ -25,8 +24,7 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel.delegate = self
-        
-        playerView = PlayerView()
+
         playerView.delegate = self
         
         view = playerView
@@ -60,9 +58,7 @@ class PlayerViewController: UIViewController {
     // MARK: - Methods
     
     private func openAuthPage() {
-        let authViewModel = AuthenticationWebViewModel(title: "LOGIN_TO_SPOTIFY".localized, urlString: .spotifyURL)
         let authVC = AuthenticationWebViewController()
-        authVC.viewModel = authViewModel
         authVC.didClose = updatePlayState
         authVC.isModalInPresentation = true
         
@@ -72,10 +68,7 @@ class PlayerViewController: UIViewController {
     }
     
     private func openRecentlyPlayed() {
-        let recentViewModel = RecentlyPlayedViewModel(title: "RECENTLY_PLAYED".localized)
         let recentVC = RecentlyPlayedViewController()
-        recentVC.viewModel = recentViewModel
-        
         let nav = UINavigationController(rootViewController: recentVC)
         
         present(nav, animated: true, completion: nil)

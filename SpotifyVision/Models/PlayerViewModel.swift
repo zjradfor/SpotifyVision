@@ -22,10 +22,10 @@ class PlayerViewModel {
     
     weak var delegate: PlayerViewModelDelegate?
     var isPlaying: Bool = false
-    
-    private var trackDurationTimer: Timer?
 
     private let provider: PlayerProvider
+
+    private var trackDurationTimer: Timer?
     
     // MARK: - Initialization
     

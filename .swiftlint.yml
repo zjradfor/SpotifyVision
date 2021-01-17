@@ -1,0 +1,41 @@
+# SwiftLint Rules
+# https://github.com/realm/SwiftLint/blob/master/Rules.md
+# Run `swiftlint rules` to check if this file is still valid
+excluded:
+  - Pods
+
+disabled_rules:
+  - trailing_whitespace
+  - cyclomatic_complexity
+  - nesting
+
+opt_in_rules:
+  - closure_end_indentation
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - operator_usage_whitespace
+
+identifier_name:
+  min_length: 2
+  max_length: 60
+
+line_length:
+  - 250 # warning
+  - 300 # error
+
+trailing_semicolon: error
+mark: error
+redundant_optional_initialization: error
+unneeded_break_in_switch: error
+unused_closure_parameter: error
+trailing_newline: error
+redundant_void_return: error
+control_statement: error
+void_return: error
+syntactic_sugar: error
+opening_brace: error
+return_arrow_whitespace: error
+operator_whitespace: error

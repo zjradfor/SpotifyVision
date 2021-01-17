@@ -10,12 +10,12 @@ import Foundation
 
 class AuthenticationWebViewModel {
     // MARK: - Properties
-    
-    var title: String
-    var urlString: String
-    
+
     private let userDefaults = UserDefaults.standard
     private let provider: AuthorizationProvider
+
+    var title: String
+    var urlString: String
     
     // MARK: - Initialization
     
@@ -27,7 +27,7 @@ class AuthenticationWebViewModel {
     
     // MARK: - Methods
     
-    func getToken(with code: String, completion: @escaping (Bool) -> ()) {
+    func getToken(with code: String, completion: @escaping (Bool) -> Void) {
         provider.getToken(with: code) { [weak self] result in
             guard let strongSelf = self else { return }
             

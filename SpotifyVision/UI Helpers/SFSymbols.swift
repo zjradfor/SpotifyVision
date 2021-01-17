@@ -71,7 +71,6 @@ enum SFSymbols {
         }
     }
     
-    
     func build(pointSize: CGFloat? = nil,
                weight: UIImage.SymbolWeight? = nil,
                scale: UIImage.SymbolScale? = nil,

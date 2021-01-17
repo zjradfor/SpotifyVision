@@ -6,9 +6,9 @@
 //  Copyright © 2020 Zach Radford. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol Constructible {
+protocol Constructible: UIView {
     func addSubviews()
     func addConstraints()
 }

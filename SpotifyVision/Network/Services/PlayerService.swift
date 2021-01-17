@@ -11,18 +11,18 @@ import Foundation
 // MARK: -
 
 protocol PlayerProvider {
-    func getCurrentPlayer(completion: @escaping (Result<CurrentlyPlaying?, APIError>) -> ())
-    func playMusic(completion: @escaping (APIError?) -> ())
-    func pauseMusic(completion: @escaping (APIError?) -> ())
-    func skipToNext(completion: @escaping (APIError?) -> ())
-    func skipToPrevious(completion: @escaping (APIError?) -> ())
-    func getRecentlyPlayed(completion: @escaping (Result<PlayHistory?, APIError>) -> ())
+    func getCurrentPlayer(completion: @escaping (Result<CurrentlyPlaying?, APIError>) -> Void)
+    func playMusic(completion: @escaping (APIError?) -> Void)
+    func pauseMusic(completion: @escaping (APIError?) -> Void)
+    func skipToNext(completion: @escaping (APIError?) -> Void)
+    func skipToPrevious(completion: @escaping (APIError?) -> Void)
+    func getRecentlyPlayed(completion: @escaping (Result<PlayHistory?, APIError>) -> Void)
 }
 
 // MARK: -
 
 class PlayerService: PlayerProvider {
-    func getCurrentPlayer(completion: @escaping (Result<CurrentlyPlaying?, APIError>) -> ()) {
+    func getCurrentPlayer(completion: @escaping (Result<CurrentlyPlaying?, APIError>) -> Void) {
         URLSession.shared.request(Services.baseURL + "/player", method: .GET, headers: Services.header) { result in
             if case let .success(data) = result {
                 let player = try? JSONDecoder().decode(CurrentlyPlaying.self, from: data)
@@ -36,7 +36,7 @@ class PlayerService: PlayerProvider {
         }
     }
     
-    func playMusic(completion: @escaping (APIError?) -> ()) {
+    func playMusic(completion: @escaping (APIError?) -> Void) {
         URLSession.shared.request(Services.baseURL + "/player/play", method: .PUT, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
@@ -46,7 +46,7 @@ class PlayerService: PlayerProvider {
         }
     }
     
-    func pauseMusic(completion: @escaping (APIError?) -> ()) {
+    func pauseMusic(completion: @escaping (APIError?) -> Void) {
         URLSession.shared.request(Services.baseURL + "/player/pause", method: .PUT, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
@@ -56,7 +56,7 @@ class PlayerService: PlayerProvider {
         }
     }
     
-    func skipToNext(completion: @escaping (APIError?) -> ()) {
+    func skipToNext(completion: @escaping (APIError?) -> Void) {
         URLSession.shared.request(Services.baseURL + "/player/next", method: .POST, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
@@ -66,7 +66,7 @@ class PlayerService: PlayerProvider {
         }
     }
     
-    func skipToPrevious(completion: @escaping (APIError?) -> ()) {
+    func skipToPrevious(completion: @escaping (APIError?) -> Void) {
         URLSession.shared.request(Services.baseURL + "/player/previous", method: .POST, headers: Services.header) { result in
             if case let .failure(error) = result {
                 completion(error)
@@ -76,7 +76,7 @@ class PlayerService: PlayerProvider {
         }
     }
     
-    func getRecentlyPlayed(completion: @escaping (Result<PlayHistory?, APIError>) -> ()) {
+    func getRecentlyPlayed(completion: @escaping (Result<PlayHistory?, APIError>) -> Void) {
         URLSession.shared.request(Services.baseURL + "/player/recently-played", method: .GET, headers: Services.header) { result in
             if case let .success(data) = result {
                 let items = try? JSONDecoder().decode(PlayHistory.self, from: data)

@@ -12,7 +12,6 @@ class RecentlyPlayedViewModel {
     // MARK: - Properties
     
     var title: String
-    
     var items: [PlayHistoryItem]?
     
     private let provider: PlayerProvider
@@ -26,7 +25,7 @@ class RecentlyPlayedViewModel {
     
     // MARK: - Methods
     
-    func getRecentlyPlayed(completion: @escaping () -> ()) {
+    func getRecentlyPlayed(completion: @escaping () -> Void) {
         provider.getRecentlyPlayed { [weak self] result in
             guard let strongSelf = self else { return }
             

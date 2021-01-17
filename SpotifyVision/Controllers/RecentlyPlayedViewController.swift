@@ -11,16 +11,13 @@ import UIKit
 class RecentlyPlayedViewController: UIViewController {
     // MARK: - Properties
     
-    var viewModel: RecentlyPlayedViewModel!
-    
-    private var tableView: UITableView!
+    private let viewModel = RecentlyPlayedViewModel(title: "RECENTLY_PLAYED".localized)
+    private let tableView = UITableView()
     
     // MARK: - Lifecyle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView = UITableView()
         
         setupTableView()
         

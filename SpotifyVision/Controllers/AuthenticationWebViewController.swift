@@ -12,19 +12,18 @@ import WebKit
 class AuthenticationWebViewController: UIViewController {
     // MARK: - Properties
     
-    var viewModel: AuthenticationWebViewModel!
+    private let viewModel = AuthenticationWebViewModel(title: "LOGIN_TO_SPOTIFY".localized, urlString: .spotifyURL)
     
     var didClose: (() -> Void)?
     
-    private var webView: WKWebView!
+    private let webView = WKWebView()
     
     // MARK: - Lifecyle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        webView = WKWebView()
-        webView?.navigationDelegate = self
+
+        webView.navigationDelegate = self
         
         title = viewModel.title
         view = webView
@@ -38,7 +37,7 @@ class AuthenticationWebViewController: UIViewController {
         if let url = URL(string: viewModel.urlString) {
             let request = URLRequest(url: url)
             
-            webView?.load(request)
+            webView.load(request)
         }
     }
     
