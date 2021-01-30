@@ -122,9 +122,7 @@ class OpenSpotifyErrorView: UIView {
 
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
-        
-        backgroundColor = .clear
-        
+
         setUp()
     }
     
@@ -133,6 +131,8 @@ class OpenSpotifyErrorView: UIView {
     }
     
     private func setUp() {
+        backgroundColor = .clear
+        
         addSubviews()
         addConstraints()
         

@@ -25,12 +25,13 @@ class PlayerView: UIView {
     
     private enum Dimensions {
         enum AlbumImage {
-            static let width: CGFloat = 450
-            static let height: CGFloat = 450
+            static let width: CGFloat = 370
+            static let height: CGFloat = 370
+            static let verticalOffset: CGFloat = -65
         }
         
         enum ControlView {
-            static let height: CGFloat = 290
+            static let height: CGFloat = 275
         }
         
         enum CurrentDeviceLabel {
@@ -46,7 +47,10 @@ class PlayerView: UIView {
     }
     
     // MARK: - Properties
-    
+
+    private var initialCenter: CGPoint = .zero
+    private var coinViewIsDown: Bool = true
+
     weak var delegate: PlayerViewDelegate?
     
     // MARK: - UI Elements
@@ -56,6 +60,7 @@ class PlayerView: UIView {
         imageView.image = UIImage(named: "album-placeholder")
         imageView.layer.cornerRadius = Dimensions.AlbumImage.height / 2
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         
         return imageView
     }()
@@ -90,12 +95,8 @@ class PlayerView: UIView {
 
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
-        
-        backgroundColor = .lightGrayColor
-        
+
         setUp()
-        
-        controlView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -103,14 +104,21 @@ class PlayerView: UIView {
     }
     
     private func setUp() {
+        backgroundColor = .lightGrayColor
+
         addSubviews()
         addConstraints()
+
+        controlView.delegate = self
+
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(coinViewDidPan))
+        albumImage.addGestureRecognizer(panGesture)
     }
     
     // MARK: - Methods
     
     func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?) {
-        controlView.updateUI(isPlaying: isPlaying, trackName: trackName)
+        controlView.updateUI(isPlaying: isPlaying)
         
         albumImage.sd_setImage(with: albumImageURL, placeholderImage: UIImage(named: "album-placeholder"))
         currentDeviceLabel.text = "CURRENTLY_PLAYING_ON".localized + "\n \(deviceName ?? "")"
@@ -127,6 +135,57 @@ class PlayerView: UIView {
     @objc
     private func recentlyPlayedButtonPressed() {
         delegate?.didPressRecentlyPlayed()
+    }
+
+    @objc
+    private func coinViewDidPan(_ sender: UIPanGestureRecognizer) {
+        let upPosition: CGFloat = 200
+        let downPosition: CGFloat = center.y + Dimensions.AlbumImage.verticalOffset
+        /// the amount of "wiggle room" in the gesture
+        let threshold: CGFloat = 20
+
+        switch sender.state {
+        case .began:
+            initialCenter = albumImage.center
+
+        case .changed:
+            /// Move the view to follow the users finger but stopping if a max or min is reached
+            let translation = sender.translation(in: self)
+            let translationDistance = initialCenter.y + translation.y
+            let isMovingUp = translationDistance < initialCenter.y
+            /// The view will only go as high as the upPosition with a threshold padding
+            let distanceUp = max(translationDistance, upPosition - threshold)
+            /// The view will only go as low as the downPosition with a threshold padding
+            let distanceDown = min(translationDistance, downPosition + threshold)
+            let distanceToMove = isMovingUp ? distanceUp : distanceDown
+
+            coinViewIsDown = !isMovingUp
+
+            albumImage.center = CGPoint(x: initialCenter.x, y: distanceToMove)
+
+        case .ended,
+             .cancelled:
+            /// When the pan gesture is ended or cancelled, move the coin view to rest in either the up or down position
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.7,
+                           options: [.curveEaseInOut]) {
+                var newValue: CGFloat = 0
+
+                if self.coinViewIsDown {
+                    newValue = downPosition
+                    self.albumImage.transform = .identity
+                } else {
+                    newValue = upPosition
+                    self.albumImage.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                }
+
+                self.albumImage.center = CGPoint(x: self.initialCenter.x, y: newValue)
+            }
+        default:
+            break
+        }
     }
 }
 
@@ -158,7 +217,7 @@ extension PlayerView: Constructible {
     
     func addConstraints() {
         albumImage.activateConstraints([
-            albumImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            albumImage.centerYAnchor.constraint(equalTo: centerYAnchor, constant: Dimensions.AlbumImage.verticalOffset),
             albumImage.centerXAnchor.constraint(equalTo: centerXAnchor),
             albumImage.widthAnchor.constraint(equalToConstant: Dimensions.AlbumImage.width),
             albumImage.heightAnchor.constraint(equalToConstant: Dimensions.AlbumImage.height)

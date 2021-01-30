@@ -22,12 +22,6 @@ class PlayerControlView: UIView {
     // MARK: - Constants
     
     private enum Dimensions {
-        enum TrackLabel {
-            static let topMargin: CGFloat = 20
-            static let leftMargin: CGFloat = 25
-            static let rightMargin: CGFloat = -25
-        }
-        
         enum ButtonStack {
             static let centerYMargin: CGFloat = -45
         }
@@ -43,15 +37,6 @@ class PlayerControlView: UIView {
     weak var delegate: PlayerControlViewDelegate?
     
     // MARK: - UI Elements
-    
-    private var trackLabel: UILabel = {
-        let label = UILabel()
-        label.text = "NOTHING_PLAYING".localized
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        
-        return label
-    }()
     
     private var playButton: UIButton = {
         let button = UIButton(type: .system)
@@ -80,8 +65,8 @@ class PlayerControlView: UIView {
         return button
     }()
     
-    private var buttonStack: UIStackView = {
-        let stackView = UIStackView()
+    private lazy var buttonStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [previousButton, playButton, nextButton])
         stackView.distribution = .equalSpacing
         stackView.spacing = 36
         
@@ -93,11 +78,7 @@ class PlayerControlView: UIView {
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
-        backgroundColor = .darkGrayColor
-        
         setUp()
-        
-        trackLabel.isHidden = true // TODO
     }
     
     required init?(coder: NSCoder) {
@@ -105,17 +86,18 @@ class PlayerControlView: UIView {
     }
     
     private func setUp() {
+        backgroundColor = .darkGrayColor
+
         addSubviews()
         addConstraints()
     }
     
     // MARK: - Methods
     
-    func updateUI(isPlaying: Bool, trackName: String?) {
+    func updateUI(isPlaying: Bool) {
         let controlImage: UIImage? = isPlaying ? SFSymbols.pause.build() : SFSymbols.play.build()
 
         playButton.setImage(controlImage, for: .normal)
-        trackLabel.text = trackName ?? "NOTHING_PLAYING".localized
     }
     
     // MARK: - Actions
@@ -140,21 +122,10 @@ class PlayerControlView: UIView {
 
 extension PlayerControlView: Constructible {
     func addSubviews() {
-        buttonStack.addArrangedSubview(previousButton)
-        buttonStack.addArrangedSubview(playButton)
-        buttonStack.addArrangedSubview(nextButton)
-        
-        addSubview(trackLabel)
         addSubview(buttonStack)
     }
     
     func addConstraints() {
-        trackLabel.activateConstraints([
-            trackLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimensions.TrackLabel.leftMargin),
-            trackLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.TrackLabel.rightMargin),
-            trackLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.TrackLabel.topMargin)
-        ])
-        
         buttonStack.activateConstraints([
             buttonStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: Dimensions.ButtonStack.centerYMargin),
             buttonStack.centerXAnchor.constraint(equalTo: centerXAnchor)
