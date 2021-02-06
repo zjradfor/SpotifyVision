@@ -15,6 +15,7 @@ enum SFSymbols {
     case previous
     case close
     case list
+    case chevron
     
     private var systemName: String {
         switch self {
@@ -24,6 +25,7 @@ enum SFSymbols {
         case .previous: return "backward.end"
         case .close: return "xmark.circle.fill"
         case .list: return "list.bullet"
+        case .chevron: return "chevron.up.circle.fill"
         }
     }
     
@@ -35,6 +37,7 @@ enum SFSymbols {
         case .previous: return 24
         case .close: return 16
         case .list: return 24
+        case .chevron: return 16
         }
     }
     
@@ -44,30 +47,20 @@ enum SFSymbols {
         case .pause: return .light
         case .next: return .light
         case .previous: return .light
-        case .close: return .unspecified
-        case .list: return .unspecified
+        case .chevron: return .light
+        default: return .unspecified
         }
     }
     
     private var defaultScale: UIImage.SymbolScale {
         switch self {
-        case .play: return .unspecified
-        case .pause: return .unspecified
-        case .next: return .unspecified
-        case .previous: return .unspecified
-        case .close: return .unspecified
-        case .list: return .unspecified
+        default: return .unspecified
         }
     }
     
     private var defaultColor: UIColor {
         switch self {
-        case .play: return .white
-        case .pause: return .white
-        case .next: return .white
-        case .previous: return .white
-        case .close: return .white
-        case .list: return .white
+        default: return .white
         }
     }
     

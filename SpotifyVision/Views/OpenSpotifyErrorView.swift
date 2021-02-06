@@ -18,7 +18,7 @@ protocol OpenSpotifyErrorViewDelegate: AnyObject {
 // MARK: -
 
 class OpenSpotifyErrorView: UIView {
-    // MARK: - Constants
+    // MARK: - UI Constants
     
     private enum Dimensions {
         enum ContainerView {
@@ -48,16 +48,6 @@ class OpenSpotifyErrorView: UIView {
             static let rightMargin: CGFloat = -12
             static let leftMargin: CGFloat = 12
         }
-    }
-    
-    // MARK: - Properties
-    
-    weak var delegate: OpenSpotifyErrorViewDelegate?
-    
-    private var hasSpotifyInstalled: Bool {
-        guard let url = URL(string: "spotify:") else { return false }
-        
-        return UIApplication.shared.canOpenURL(url)
     }
     
     // MARK: - UI Elements
@@ -117,6 +107,16 @@ class OpenSpotifyErrorView: UIView {
         
         return button
     }()
+
+    // MARK: - Properties
+
+    weak var delegate: OpenSpotifyErrorViewDelegate?
+
+    private var hasSpotifyInstalled: Bool {
+        guard let url = URL(string: "spotify:") else { return false }
+
+        return UIApplication.shared.canOpenURL(url)
+    }
     
     // MARK: - Initialization
 

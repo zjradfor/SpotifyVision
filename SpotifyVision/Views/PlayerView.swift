@@ -21,13 +21,13 @@ protocol PlayerViewDelegate: AnyObject {
 // MARK: -
 
 class PlayerView: UIView {
-    // MARK: - Constants
+    // MARK: - UI Constants
     
     private enum Dimensions {
         enum AlbumImage {
             static let width: CGFloat = 370
             static let height: CGFloat = 370
-            static let verticalOffset: CGFloat = -65
+            static let verticalOffset: CGFloat = -74
         }
         
         enum ControlView {
@@ -42,16 +42,21 @@ class PlayerView: UIView {
             static let width: CGFloat = 44
             static let height: CGFloat = 44
             static let bottomMargin: CGFloat = -50
-            static let rightMargin: CGFloat = -20
+            static let rightMargin: CGFloat = -35
+        }
+
+        enum MoveCoinViewButton {
+            static let width: CGFloat = 44
+            static let height: CGFloat = 44
+            static let bottomMargin: CGFloat = -12
+            static let rightMargin: CGFloat = -30
         }
     }
+
+    private let coinUpPosition: CGFloat = 200
     
-    // MARK: - Properties
-
-    private var initialCenter: CGPoint = .zero
-    private var coinViewIsDown: Bool = true
-
-    weak var delegate: PlayerViewDelegate?
+    private var coinDownPosition: CGFloat { center.y + Dimensions.AlbumImage.verticalOffset }
+    private var coinInitialCenter: CGPoint = .zero
     
     // MARK: - UI Elements
     
@@ -90,6 +95,21 @@ class PlayerView: UIView {
         
         return button
     }()
+
+    private var moveCoinViewButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = SFSymbols.chevron.build()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(moveCoinViewButtonPressed), for: .touchUpInside)
+
+        return button
+    }()
+
+    // MARK: - Properties
+
+    private var coinViewIsDown: Bool = true
+
+    weak var delegate: PlayerViewDelegate?
     
     // MARK: - Initialization
 
@@ -114,6 +134,14 @@ class PlayerView: UIView {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(coinViewDidPan))
         albumImage.addGestureRecognizer(panGesture)
     }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        moveCoinViewButton.transform = .identity
+        albumImage.transform = .identity
+        coinViewIsDown = true
+    }
     
     // MARK: - Methods
     
@@ -129,6 +157,29 @@ class PlayerView: UIView {
             albumImage.layer.removeAllAnimations()
         }
     }
+
+    private func animateCoinViewPosition() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.7,
+                       options: [.curveEaseInOut]) {
+            var newValue: CGFloat = 0
+
+            if self.coinViewIsDown {
+                newValue = self.coinDownPosition
+                self.albumImage.transform = .identity
+            } else {
+                newValue = self.coinUpPosition
+                self.albumImage.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            }
+
+            self.albumImage.center = CGPoint(x: self.albumImage.center.x, y: newValue)
+        }
+
+        /// Rotate chevron button to reflect the action direction
+        moveCoinViewButton.transform = moveCoinViewButton.transform.rotated(by: .pi)
+    }
     
     // MARK: - Actions
     
@@ -138,51 +189,40 @@ class PlayerView: UIView {
     }
 
     @objc
+    private func moveCoinViewButtonPressed() {
+        coinViewIsDown.toggle()
+        animateCoinViewPosition()
+    }
+
+    @objc
     private func coinViewDidPan(_ sender: UIPanGestureRecognizer) {
-        let upPosition: CGFloat = 200
-        let downPosition: CGFloat = center.y + Dimensions.AlbumImage.verticalOffset
         /// the amount of "wiggle room" in the gesture
         let threshold: CGFloat = 20
 
         switch sender.state {
         case .began:
-            initialCenter = albumImage.center
+            coinInitialCenter = albumImage.center
 
         case .changed:
             /// Move the view to follow the users finger but stopping if a max or min is reached
             let translation = sender.translation(in: self)
-            let translationDistance = initialCenter.y + translation.y
-            let isMovingUp = translationDistance < initialCenter.y
+            let translationDistance = coinInitialCenter.y + translation.y
+            let isMovingUp = translationDistance < coinInitialCenter.y
             /// The view will only go as high as the upPosition with a threshold padding
-            let distanceUp = max(translationDistance, upPosition - threshold)
+            let distanceUp = max(translationDistance, coinUpPosition - threshold)
             /// The view will only go as low as the downPosition with a threshold padding
-            let distanceDown = min(translationDistance, downPosition + threshold)
+            let distanceDown = min(translationDistance, coinDownPosition + threshold)
             let distanceToMove = isMovingUp ? distanceUp : distanceDown
 
             coinViewIsDown = !isMovingUp
 
-            albumImage.center = CGPoint(x: initialCenter.x, y: distanceToMove)
+            albumImage.center = CGPoint(x: coinInitialCenter.x, y: distanceToMove)
 
         case .ended,
              .cancelled:
             /// When the pan gesture is ended or cancelled, move the coin view to rest in either the up or down position
-            UIView.animate(withDuration: 0.5,
-                           delay: 0.0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: [.curveEaseInOut]) {
-                var newValue: CGFloat = 0
+            animateCoinViewPosition()
 
-                if self.coinViewIsDown {
-                    newValue = downPosition
-                    self.albumImage.transform = .identity
-                } else {
-                    newValue = upPosition
-                    self.albumImage.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-                }
-
-                self.albumImage.center = CGPoint(x: self.initialCenter.x, y: newValue)
-            }
         default:
             break
         }
@@ -213,6 +253,7 @@ extension PlayerView: Constructible {
         addSubview(controlView)
         addSubview(currentDeviceLabel)
         addSubview(recentlyPlayedButton)
+        addSubview(moveCoinViewButton)
     }
     
     func addConstraints() {
@@ -240,6 +281,13 @@ extension PlayerView: Constructible {
             recentlyPlayedButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Dimensions.RecentlyPlayedButton.bottomMargin),
             recentlyPlayedButton.widthAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.width),
             recentlyPlayedButton.heightAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.height)
+        ])
+
+        moveCoinViewButton.activateConstraints([
+            moveCoinViewButton.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.MoveCoinViewButton.rightMargin),
+            moveCoinViewButton.bottomAnchor.constraint(equalTo: controlView.topAnchor, constant: Dimensions.MoveCoinViewButton.bottomMargin),
+            moveCoinViewButton.widthAnchor.constraint(equalToConstant: Dimensions.MoveCoinViewButton.width),
+            moveCoinViewButton.heightAnchor.constraint(equalToConstant: Dimensions.MoveCoinViewButton.height)
         ])
     }
 }

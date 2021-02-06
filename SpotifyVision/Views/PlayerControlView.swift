@@ -19,7 +19,7 @@ protocol PlayerControlViewDelegate: AnyObject {
 // MARK: -
 
 class PlayerControlView: UIView {
-    // MARK: - Constants
+    // MARK: - UI Constants
     
     private enum Dimensions {
         enum ButtonStack {
@@ -31,10 +31,6 @@ class PlayerControlView: UIView {
             static let height: CGFloat = 80
         }
     }
-    
-    // MARK: - Properties
-    
-    weak var delegate: PlayerControlViewDelegate?
     
     // MARK: - UI Elements
     
@@ -68,10 +64,14 @@ class PlayerControlView: UIView {
     private lazy var buttonStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [previousButton, playButton, nextButton])
         stackView.distribution = .equalSpacing
-        stackView.spacing = 36
+        stackView.spacing = 48
         
         return stackView
     }()
+
+    // MARK: - Properties
+
+    weak var delegate: PlayerControlViewDelegate?
     
     // MARK: Initialization
     
