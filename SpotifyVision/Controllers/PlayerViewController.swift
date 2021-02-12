@@ -10,6 +10,8 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     // MARK: - Properties
+
+    var coordinator: AppCoordinator?
     
     private let viewModel = PlayerViewModel()
     private let playerView = PlayerView()
@@ -67,13 +69,6 @@ class PlayerViewController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     
-    private func openRecentlyPlayed() {
-        let recentVC = RecentlyPlayedViewController()
-        let nav = UINavigationController(rootViewController: recentVC)
-        
-        present(nav, animated: true, completion: nil)
-    }
-    
     private func askToOpenSpotify() {
         guard openSpotifyErrorView == nil else { return }
         
@@ -117,7 +112,7 @@ extension PlayerViewController: PlayerViewDelegate {
     }
     
     func didPressRecentlyPlayed() {
-        openRecentlyPlayed()
+        coordinator?.showRecentlyPlayedView()
     }
 }
 

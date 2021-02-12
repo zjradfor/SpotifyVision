@@ -37,13 +37,6 @@ class PlayerView: UIView {
         enum CurrentDeviceLabel {
             static let topMargin: CGFloat = 50
         }
-        
-        enum RecentlyPlayedButton {
-            static let width: CGFloat = 44
-            static let height: CGFloat = 44
-            static let bottomMargin: CGFloat = -50
-            static let rightMargin: CGFloat = -35
-        }
 
         enum MoveCoinViewButton {
             static let width: CGFloat = 44
@@ -85,15 +78,6 @@ class PlayerView: UIView {
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         
         return label
-    }()
-    
-    private var recentlyPlayedButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = SFSymbols.list.build()
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(recentlyPlayedButtonPressed), for: .touchUpInside)
-        
-        return button
     }()
 
     private var moveCoinViewButton: UIButton = {
@@ -182,11 +166,6 @@ class PlayerView: UIView {
     }
     
     // MARK: - Actions
-    
-    @objc
-    private func recentlyPlayedButtonPressed() {
-        delegate?.didPressRecentlyPlayed()
-    }
 
     @objc
     private func moveCoinViewButtonPressed() {
@@ -243,6 +222,10 @@ extension PlayerView: PlayerControlViewDelegate {
     func didPressPreviousButton() {
         delegate?.didPressPreviousButton()
     }
+
+    func didPressRecentlyPlayed() {
+       delegate?.didPressRecentlyPlayed()
+   }
 }
 
 // MARK: -
@@ -252,7 +235,6 @@ extension PlayerView: Constructible {
         addSubview(albumImage)
         addSubview(controlView)
         addSubview(currentDeviceLabel)
-        addSubview(recentlyPlayedButton)
         addSubview(moveCoinViewButton)
     }
     
@@ -274,13 +256,6 @@ extension PlayerView: Constructible {
         currentDeviceLabel.activateConstraints([
             currentDeviceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             currentDeviceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.CurrentDeviceLabel.topMargin)
-        ])
-        
-        recentlyPlayedButton.activateConstraints([
-            recentlyPlayedButton.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.RecentlyPlayedButton.rightMargin),
-            recentlyPlayedButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Dimensions.RecentlyPlayedButton.bottomMargin),
-            recentlyPlayedButton.widthAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.width),
-            recentlyPlayedButton.heightAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.height)
         ])
 
         moveCoinViewButton.activateConstraints([

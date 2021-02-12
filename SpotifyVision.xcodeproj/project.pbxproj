@@ -26,6 +26,8 @@
 		4B63DFB124CE434B0050B469 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB024CE434B0050B469 /* Services.swift */; };
 		4B63DFB424CE43DD0050B469 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB324CE43DD0050B469 /* RefreshToken.swift */; };
 		4B63DFB624CE441E0050B469 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63DFB524CE441E0050B469 /* PlayerService.swift */; };
+		4B78342F25D721DD00612D9B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78342E25D721DD00612D9B /* AppCoordinator.swift */; };
+		4B78343625D7266C00612D9B /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78343525D7266C00612D9B /* Coordinating.swift */; };
 		4B7C8F55248EFA9100455299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F54248EFA9100455299 /* AppDelegate.swift */; };
 		4B7C8F57248EFA9100455299 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F56248EFA9100455299 /* SceneDelegate.swift */; };
 		4B7C8F59248EFA9100455299 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F58248EFA9100455299 /* PlayerViewController.swift */; };
@@ -80,6 +82,8 @@
 		4B63DFB024CE434B0050B469 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		4B63DFB324CE43DD0050B469 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		4B63DFB524CE441E0050B469 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
+		4B78342E25D721DD00612D9B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		4B78343525D7266C00612D9B /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
 		4B7C8F51248EFA9100455299 /* SpotifyVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7C8F54248EFA9100455299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B7C8F56248EFA9100455299 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +170,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		4B78342D25D721BB00612D9B /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4B78342E25D721DD00612D9B /* AppCoordinator.swift */,
+				4B78343525D7266C00612D9B /* Coordinating.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		4B7C8F48248EFA9100455299 = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +209,7 @@
 				4BCC7AEB24D8888F00583C62 /* Models */,
 				4BCC7AEC24D888A000583C62 /* Views */,
 				4BCC7AED24D888A700583C62 /* Controllers */,
+				4B78342D25D721BB00612D9B /* Coordinator */,
 				4B63DFB224CE435F0050B469 /* Network */,
 				4BD0882024D0FDB800BC0B80 /* Utilities */,
 				4B99948F25B11BF500CC325A /* UI Helpers */,
@@ -490,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BE75A3F24BD3151009475FA /* SpotifyCredentials.swift in Sources */,
+				4B78342F25D721DD00612D9B /* AppCoordinator.swift in Sources */,
 				4B11B3402504387200EB7EF2 /* Track.swift in Sources */,
 				4BD0880C24CE751800BC0B80 /* AuthorizationService.swift in Sources */,
 				4B7C8F59248EFA9100455299 /* PlayerViewController.swift in Sources */,
@@ -498,6 +513,7 @@
 				4B7C8F55248EFA9100455299 /* AppDelegate.swift in Sources */,
 				4B99949325B11C7700CC325A /* SFSymbols.swift in Sources */,
 				4BD0881F24D0FBCB00BC0B80 /* Colours.swift in Sources */,
+				4B78343625D7266C00612D9B /* Coordinating.swift in Sources */,
 				4BD0881524CF9F4400BC0B80 /* UserDefaults+Extensions.swift in Sources */,
 				4BD0881324CF99FE00BC0B80 /* SpotifyURL.swift in Sources */,
 				4B63DFB124CE434B0050B469 /* Services.swift in Sources */,

@@ -14,6 +14,7 @@ protocol PlayerControlViewDelegate: AnyObject {
     func didPressPlayButton()
     func didPressNextButton()
     func didPressPreviousButton()
+    func didPressRecentlyPlayed()
 }
 
 // MARK: -
@@ -29,6 +30,13 @@ class PlayerControlView: UIView {
         enum ControlButtons {
             static let width: CGFloat = 80
             static let height: CGFloat = 80
+        }
+        
+        enum RecentlyPlayedButton {
+            static let width: CGFloat = 44
+            static let height: CGFloat = 44
+            static let bottomMargin: CGFloat = -50
+            static let rightMargin: CGFloat = -35
         }
     }
     
@@ -67,6 +75,15 @@ class PlayerControlView: UIView {
         stackView.spacing = 48
         
         return stackView
+    }()
+
+    private var recentlyPlayedButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = SFSymbols.list.build()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(recentlyPlayedButtonPressed), for: .touchUpInside)
+
+        return button
     }()
 
     // MARK: - Properties
@@ -116,6 +133,11 @@ class PlayerControlView: UIView {
     private func nextButtonPressed() {
         delegate?.didPressNextButton()
     }
+
+    @objc
+    private func recentlyPlayedButtonPressed() {
+        delegate?.didPressRecentlyPlayed()
+    }
 }
 
 // MARK: -
@@ -123,6 +145,7 @@ class PlayerControlView: UIView {
 extension PlayerControlView: Constructible {
     func addSubviews() {
         addSubview(buttonStack)
+        addSubview(recentlyPlayedButton)
     }
     
     func addConstraints() {
@@ -144,6 +167,13 @@ extension PlayerControlView: Constructible {
         nextButton.activateConstraints([
             nextButton.widthAnchor.constraint(equalToConstant: Dimensions.ControlButtons.width),
             nextButton.heightAnchor.constraint(equalToConstant: Dimensions.ControlButtons.height)
+        ])
+
+        recentlyPlayedButton.activateConstraints([
+            recentlyPlayedButton.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.RecentlyPlayedButton.rightMargin),
+            recentlyPlayedButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Dimensions.RecentlyPlayedButton.bottomMargin),
+            recentlyPlayedButton.widthAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.width),
+            recentlyPlayedButton.heightAnchor.constraint(equalToConstant: Dimensions.RecentlyPlayedButton.height)
         ])
     }
 }
