@@ -15,7 +15,6 @@ class PlayerViewController: UIViewController {
     
     private let viewModel = PlayerViewModel()
     private let playerView = PlayerView()
-    private var openSpotifyErrorView: OpenSpotifyErrorView?
     
     private let userDefaults = UserDefaults.standard
     private let notificationCenter = NotificationCenter.default
@@ -69,21 +68,6 @@ class PlayerViewController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     
-    private func askToOpenSpotify() {
-        guard openSpotifyErrorView == nil else { return }
-        
-        DispatchQueue.main.async {
-            let errorView = OpenSpotifyErrorView()
-            errorView.delegate = self
-            
-            self.view.addSubview(errorView)
-            
-            errorView.pinEdges(to: self.view)
-            
-            self.openSpotifyErrorView = errorView
-        }
-    }
-    
     // MARK: - Event Handlers
     
     @objc
@@ -116,23 +100,6 @@ extension PlayerViewController: PlayerViewDelegate {
     }
 }
 
-// MARK: - OpenSpotifyErrorViewDelegate
-
-extension PlayerViewController: OpenSpotifyErrorViewDelegate {
-    func didPressCloseError() {
-        openSpotifyErrorView?.removeFromSuperview()
-        openSpotifyErrorView = nil
-    }
-    
-    func didPressOpenSpotify() {
-        didPressCloseError()
-        
-        if let url = URL(string: "https://open.spotify.com") {
-            UIApplication.shared.open(url)
-        }
-    }
-}
-
 // MARK: - PlayerDelegate
 
 extension PlayerViewController: PlayerViewModelDelegate {
@@ -148,7 +115,7 @@ extension PlayerViewController: PlayerViewModelDelegate {
     func showError(_ error: APIError) {
         switch error {
         case .notFound:
-            askToOpenSpotify()
+            coordinator?.showOpenSpotifyErrorView()
         default:
             print(error)
             showAlert(title: error.title, message: error.message)

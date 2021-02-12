@@ -13,6 +13,9 @@ class AppCoordinator: Coordinating {
 
     let navigationController: UINavigationController
 
+    /// This is set to manage only one popover view at a time, the first will have priority
+    private var popOverView: UIView?
+
     // MARK: - Initialization
 
     required init(navigationController: UINavigationController) {
@@ -35,10 +38,41 @@ class AppCoordinator: Coordinating {
         navigationController.pushViewController(vc, animated: false)
     }
 
+    func showOpenSpotifyErrorView() {
+        guard popOverView == nil else { return }
+
+        DispatchQueue.main.async {
+            let errorView = OpenSpotifyErrorView()
+            errorView.delegate = self
+
+            self.navigationController.view.addSubview(errorView)
+
+            errorView.pinEdges(to: self.navigationController.view)
+
+            self.popOverView = errorView
+        }
+    }
+
     func showRecentlyPlayedView() {
         let vc = RecentlyPlayedViewController()
         let nav = UINavigationController(rootViewController: vc)
 
         navigationController.present(nav, animated: true)
+    }
+}
+
+extension AppCoordinator: OpenSpotifyErrorViewDelegate {
+    func didPressCloseError() {
+        popOverView?.removeFromSuperview()
+        popOverView = nil
+    }
+
+    func didPressOpenSpotify() {
+        /// Close the error view after opening the link since there is no completion
+        didPressCloseError()
+
+        if let url = URL(string: "https://open.spotify.com") {
+            UIApplication.shared.open(url)
+        }
     }
 }

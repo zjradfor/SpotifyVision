@@ -173,8 +173,8 @@
 		4B78342D25D721BB00612D9B /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				4B78342E25D721DD00612D9B /* AppCoordinator.swift */,
 				4B78343525D7266C00612D9B /* Coordinating.swift */,
+				4B78342E25D721DD00612D9B /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
