@@ -13,10 +13,8 @@ class AuthenticationWebViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel = AuthenticationWebViewModel(title: "LOGIN_TO_SPOTIFY".localized, urlString: .spotifyURL)
-    
-    var didClose: (() -> Void)?
-    
     private let webView = WKWebView()
+    private let notificationCenter = NotificationCenter.default
     
     // MARK: - Lifecyle Methods
     
@@ -51,8 +49,8 @@ class AuthenticationWebViewController: UIViewController {
         if let code = queryItems.filter({ item in item.name == "code" }).first?.value {
             viewModel.getToken(with: code) { result in
                 if result {
-                    self.didClose?()
-                    self.dismiss(animated: true, completion: nil)
+                    self.notificationCenter.post(name: .didAuthenticate, object: nil)
+                    self.dismiss(animated: true)
                 } else {
                     // error?
                 }

@@ -15,8 +15,6 @@ class PlayerViewController: UIViewController {
     
     private let viewModel = PlayerViewModel()
     private let playerView = PlayerView()
-    
-    private let userDefaults = UserDefaults.standard
     private let notificationCenter = NotificationCenter.default
     
     // MARK: - Lifecyle Methods
@@ -25,7 +23,6 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel.delegate = self
-
         playerView.delegate = self
         
         view = playerView
@@ -36,16 +33,18 @@ class PlayerViewController: UIViewController {
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(updatePlayState),
+            name: .didAuthenticate,
+            object: nil
+        )
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if userDefaults.accessToken == nil {
-            openAuthPage()
-        } else {
-            updatePlayState()
-        }
+
+        updatePlayState()
     }
     
     deinit {
@@ -54,18 +53,11 @@ class PlayerViewController: UIViewController {
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
-    }
-    
-    // MARK: - Methods
-    
-    private func openAuthPage() {
-        let authVC = AuthenticationWebViewController()
-        authVC.didClose = updatePlayState
-        authVC.isModalInPresentation = true
-        
-        let nav = UINavigationController(rootViewController: authVC)
-        
-        present(nav, animated: true, completion: nil)
+        notificationCenter.removeObserver(
+            self,
+            name: .didAuthenticate,
+            object: nil
+        )
     }
     
     // MARK: - Event Handlers

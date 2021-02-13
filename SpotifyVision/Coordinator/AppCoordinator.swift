@@ -13,6 +13,8 @@ class AppCoordinator: Coordinating {
 
     let navigationController: UINavigationController
 
+    private let userDefaults = UserDefaults.standard
+
     /// This is set to manage only one popover view at a time, the first will have priority
     private var popOverView: UIView?
 
@@ -26,9 +28,24 @@ class AppCoordinator: Coordinating {
 
     // MARK: - Methods
 
-    /// TODO: Create a router to handle navigation
     func start() {
         showPlayerView()
+
+        if userDefaults.accessToken == nil {
+            openAuthPage()
+        }
+    }
+
+    private func openAuthPage() {
+        let authVC = AuthenticationWebViewController()
+        /// Don't allow the modal to be dismissed by swiping
+        authVC.isModalInPresentation = true
+
+        DispatchQueue.main.async {
+            let nav = UINavigationController(rootViewController: authVC)
+
+            self.navigationController.present(nav, animated: true)
+        }
     }
 
     private func showPlayerView() {
@@ -60,6 +77,8 @@ class AppCoordinator: Coordinating {
         navigationController.present(nav, animated: true)
     }
 }
+
+// MARK: - OpenSpotifyErrorViewDelegate
 
 extension AppCoordinator: OpenSpotifyErrorViewDelegate {
     func didPressCloseError() {
