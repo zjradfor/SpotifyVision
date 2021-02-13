@@ -95,11 +95,12 @@ extension PlayerViewController: PlayerViewDelegate {
 // MARK: - PlayerDelegate
 
 extension PlayerViewController: PlayerViewModelDelegate {
-    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?) {
+    func updateUI(isPlaying: Bool, trackName: String?, artists: [Artist], album: Album, deviceName: String?) {
         playerView.updateUI(
             isPlaying: isPlaying,
             trackName: trackName,
-            albumImageURL: albumImageURL,
+            artists: artists,
+            album: album,
             deviceName: deviceName
         )
     }

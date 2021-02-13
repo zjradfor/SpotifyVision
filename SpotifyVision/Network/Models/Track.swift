@@ -9,11 +9,13 @@
 import Foundation
 
 struct Track: Decodable {
+    let artists: [Artist]
     let name: String
     let album: Album
     let duration: Int
     
     enum CodingKeys: String, CodingKey {
+        case artists
         case name
         case album
         case duration = "duration_ms"

@@ -129,10 +129,10 @@ class PlayerView: UIView {
     
     // MARK: - Methods
     
-    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?) {
+    func updateUI(isPlaying: Bool, trackName: String?, artists: [Artist], album: Album, deviceName: String?) {
         controlView.updateUI(isPlaying: isPlaying)
         
-        albumImage.sd_setImage(with: albumImageURL, placeholderImage: UIImage(named: "album-placeholder"))
+        setAlbumImage(album: album)
         currentDeviceLabel.text = "CURRENTLY_PLAYING_ON".localized + "\n \(deviceName ?? "")"
         
         if isPlaying {
@@ -140,6 +140,13 @@ class PlayerView: UIView {
         } else {
             albumImage.layer.removeAllAnimations()
         }
+    }
+
+    private func setAlbumImage(album: Album) {
+        let image = album.images.first
+        let imageURL = URL(string: image?.url ?? "")
+
+        albumImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "album-placeholder"))
     }
 
     private func animateCoinViewPosition() {

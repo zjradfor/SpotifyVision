@@ -11,7 +11,7 @@ import Foundation
 // MARK: -
 
 protocol PlayerViewModelDelegate: AnyObject {
-    func updateUI(isPlaying: Bool, trackName: String?, albumImageURL: URL?, deviceName: String?)
+    func updateUI(isPlaying: Bool, trackName: String?, artists: [Artist], album: Album, deviceName: String?)
     func showError(_ error: APIError)
 }
 
@@ -34,35 +34,33 @@ class PlayerViewModel {
     }
     
     // MARK: - Methods
-    
+
+    /// Delay getting the current player to allow other actions to be synced on Spotify
+    /// NOTE: The player API is flakey and isn't always return the correct values
     func getCurrentlyPlaying() {
-        // Delay getting the current player to allow other actions to be synced on Spotify
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // NOTE: The player API is flakey and isn't always return the correct values
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.provider.getCurrentPlayer { [weak self] result in
                 guard let strongSelf = self else { return }
                 
                 switch result {
                 case .success(let successResult):
                     guard let currentlyPlaying = successResult,
-                        let currentTrack = currentlyPlaying.item,
-                        let albumImage = currentTrack.album.images.first else { return }
-                    
-                    let albumImageURL = URL(string: albumImage.url)
+                        let currentItem = currentlyPlaying.item else { return }
                     
                     strongSelf.isPlaying = currentlyPlaying.isPlaying
                     
                     strongSelf.delegate?.updateUI(
                         isPlaying: currentlyPlaying.isPlaying,
-                        trackName: currentTrack.name,
-                        albumImageURL: albumImageURL,
+                        trackName: currentItem.name,
+                        artists: currentItem.artists,
+                        album: currentItem.album,
                         deviceName: currentlyPlaying.device.name
                     )
-                    
-                    guard let trackDuration = currentlyPlaying.item?.duration,
-                        let progress = currentlyPlaying.progress else { return }
-                    
-                    let timeRemaining = (trackDuration - progress).msToSeconds
-                    strongSelf.startTrackDurationTimer(for: timeRemaining)
+
+                    strongSelf.startTrackDurationTimer(
+                        progress: currentlyPlaying.progress,
+                        duration: currentItem.duration
+                    )
                     
                 case .failure(let error):
                     strongSelf.delegate?.showError(error)
@@ -119,7 +117,10 @@ class PlayerViewModel {
         }
     }
     
-    private func startTrackDurationTimer(for seconds: Double) {
+    private func startTrackDurationTimer(progress: Int?, duration: Int) {
+        guard let progress = progress else { return }
+        let seconds = (duration - progress).msToSeconds
+
         trackDurationTimer?.invalidate()
         
         trackDurationTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { [weak self] _ in
