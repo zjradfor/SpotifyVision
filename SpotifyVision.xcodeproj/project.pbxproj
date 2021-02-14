@@ -30,6 +30,7 @@
 		4B78343625D7266C00612D9B /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78343525D7266C00612D9B /* Coordinating.swift */; };
 		4B78343C25D86B1B00612D9B /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78343B25D86B1B00612D9B /* Notification+Extensions.swift */; };
 		4B78344025D86F2A00612D9B /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78343F25D86F2A00612D9B /* Artist.swift */; };
+		4B78344625D9BC7F00612D9B /* TrackLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78344525D9BC7F00612D9B /* TrackLabelView.swift */; };
 		4B7C8F55248EFA9100455299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F54248EFA9100455299 /* AppDelegate.swift */; };
 		4B7C8F57248EFA9100455299 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F56248EFA9100455299 /* SceneDelegate.swift */; };
 		4B7C8F59248EFA9100455299 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7C8F58248EFA9100455299 /* PlayerViewController.swift */; };
@@ -88,6 +89,7 @@
 		4B78343525D7266C00612D9B /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
 		4B78343B25D86B1B00612D9B /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		4B78343F25D86F2A00612D9B /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		4B78344525D9BC7F00612D9B /* TrackLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackLabelView.swift; sourceTree = "<group>"; };
 		4B7C8F51248EFA9100455299 /* SpotifyVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7C8F54248EFA9100455299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B7C8F56248EFA9100455299 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				4BCC7AE624D24F6100583C62 /* PlayerView.swift */,
 				4B11B3492506A81A00EB7EF2 /* OpenSpotifyErrorView.swift */,
 				4BE297D92599202300DC6DDD /* PlayerControlView.swift */,
+				4B78344525D9BC7F00612D9B /* TrackLabelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				4BD0880C24CE751800BC0B80 /* AuthorizationService.swift in Sources */,
 				4B7C8F59248EFA9100455299 /* PlayerViewController.swift in Sources */,
 				4BCC7AE724D24F6100583C62 /* PlayerView.swift in Sources */,
+				4B78344625D9BC7F00612D9B /* TrackLabelView.swift in Sources */,
 				4B4D5A072506FFF700BE9FFC /* PlayHistory.swift in Sources */,
 				4B7C8F55248EFA9100455299 /* AppDelegate.swift in Sources */,
 				4B99949325B11C7700CC325A /* SFSymbols.swift in Sources */,

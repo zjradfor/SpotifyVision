@@ -170,6 +170,8 @@ class OpenSpotifyErrorView: UIView {
     }
 }
 
+// MARK: -
+
 extension OpenSpotifyErrorView: Constructible {
     func addSubviews() {
         addSubview(dimView)

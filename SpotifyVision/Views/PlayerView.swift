@@ -44,10 +44,16 @@ class PlayerView: UIView {
             static let bottomMargin: CGFloat = -12
             static let rightMargin: CGFloat = -30
         }
+
+        enum TrackLabelView {
+            static let height: CGFloat = 88
+            static let leftMargin: CGFloat = 80
+            static let rightMargin: CGFloat = -80
+        }
     }
 
-    private let coinUpPosition: CGFloat = 200
-    
+    /// The coin's up position is halfway between the device label and the track label
+    private var coinUpPosition: CGFloat { (currentDeviceLabel.frame.maxY + trackLabelView.frame.minY) / 2 }
     private var coinDownPosition: CGFloat { center.y + Dimensions.AlbumImage.verticalOffset }
     private var coinInitialCenter: CGPoint = .zero
     
@@ -88,6 +94,8 @@ class PlayerView: UIView {
 
         return button
     }()
+
+    private let trackLabelView = TrackLabelView()
 
     // MARK: - Properties
 
@@ -134,6 +142,7 @@ class PlayerView: UIView {
         
         setAlbumImage(album: album)
         currentDeviceLabel.text = "CURRENTLY_PLAYING_ON".localized + "\n \(deviceName ?? "")"
+        trackLabelView.setTrackLabel(trackName: trackName, artists: artists)
         
         if isPlaying {
             albumImage.rotate360Degrees()
@@ -160,16 +169,15 @@ class PlayerView: UIView {
             if self.coinViewIsDown {
                 newValue = self.coinDownPosition
                 self.albumImage.transform = .identity
+                self.moveCoinViewButton.transform = .identity
             } else {
                 newValue = self.coinUpPosition
-                self.albumImage.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                self.albumImage.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                self.moveCoinViewButton.transform = self.moveCoinViewButton.transform.rotated(by: .pi)
             }
 
             self.albumImage.center = CGPoint(x: self.albumImage.center.x, y: newValue)
         }
-
-        /// Rotate chevron button to reflect the action direction
-        moveCoinViewButton.transform = moveCoinViewButton.transform.rotated(by: .pi)
     }
     
     // MARK: - Actions
@@ -243,6 +251,9 @@ extension PlayerView: Constructible {
         addSubview(controlView)
         addSubview(currentDeviceLabel)
         addSubview(moveCoinViewButton)
+        addSubview(trackLabelView)
+
+        bringSubviewToFront(albumImage)
     }
     
     func addConstraints() {
@@ -270,6 +281,13 @@ extension PlayerView: Constructible {
             moveCoinViewButton.bottomAnchor.constraint(equalTo: controlView.topAnchor, constant: Dimensions.MoveCoinViewButton.bottomMargin),
             moveCoinViewButton.widthAnchor.constraint(equalToConstant: Dimensions.MoveCoinViewButton.width),
             moveCoinViewButton.heightAnchor.constraint(equalToConstant: Dimensions.MoveCoinViewButton.height)
+        ])
+
+        trackLabelView.activateConstraints([
+            trackLabelView.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.TrackLabelView.rightMargin),
+            trackLabelView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimensions.TrackLabelView.leftMargin),
+            trackLabelView.heightAnchor.constraint(equalToConstant: Dimensions.TrackLabelView.height),
+            trackLabelView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }
