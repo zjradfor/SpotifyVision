@@ -46,7 +46,6 @@ class PlayerView: UIView {
         }
 
         enum TrackLabelView {
-            static let height: CGFloat = 88
             static let leftMargin: CGFloat = 80
             static let rightMargin: CGFloat = -80
         }
@@ -97,9 +96,27 @@ class PlayerView: UIView {
 
     private let trackLabelView = TrackLabelView()
 
+    // MARK: - Types
+
+    private enum CoinState {
+        case up
+        case down
+
+        mutating func toggle() {
+            switch self {
+            case .up: self = .down
+            case .down: self = .up
+            }
+        }
+
+        var isDown: Bool {
+            self == .down
+        }
+    }
+
     // MARK: - Properties
 
-    private var coinViewIsDown: Bool = true
+    private var coinPosition: CoinState = .down
 
     weak var delegate: PlayerViewDelegate?
     
@@ -130,9 +147,10 @@ class PlayerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        /// Reset view positions
         moveCoinViewButton.transform = .identity
         albumImage.transform = .identity
-        coinViewIsDown = true
+        coinPosition = .down
     }
     
     // MARK: - Methods
@@ -158,25 +176,46 @@ class PlayerView: UIView {
         albumImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "album-placeholder"))
     }
 
-    private func animateCoinViewPosition() {
+    // MARK: - Animations
+
+    private func animateViewState() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        usingSpringWithDamping: 0.7,
                        initialSpringVelocity: 0.7,
                        options: [.curveEaseInOut]) {
-            var newValue: CGFloat = 0
+            self.animateCoinViewPosition()
+            self.animateCoinViewButton()
+        } completion: { _ in
+            self.animateTrackLabel()
+        }
+    }
 
-            if self.coinViewIsDown {
-                newValue = self.coinDownPosition
-                self.albumImage.transform = .identity
-                self.moveCoinViewButton.transform = .identity
-            } else {
-                newValue = self.coinUpPosition
-                self.albumImage.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-                self.moveCoinViewButton.transform = self.moveCoinViewButton.transform.rotated(by: .pi)
-            }
+    private func animateCoinViewPosition() {
+        let newValue = coinPosition.isDown ? coinDownPosition : coinUpPosition
 
-            self.albumImage.center = CGPoint(x: self.albumImage.center.x, y: newValue)
+        switch coinPosition {
+        case .up:
+            albumImage.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        case .down:
+            albumImage.transform = .identity
+        }
+
+        albumImage.center = CGPoint(x: self.albumImage.center.x, y: newValue)
+    }
+
+    private func animateCoinViewButton() {
+        switch coinPosition {
+        case .up:
+            moveCoinViewButton.transform = moveCoinViewButton.transform.rotated(by: .pi)
+        case .down:
+            moveCoinViewButton.transform = .identity
+        }
+    }
+
+    private func animateTrackLabel() {
+        UIView.animate(withDuration: 0.5) {
+            self.trackLabelView.alpha = self.coinPosition.isDown ? 0 : 1
         }
     }
     
@@ -184,8 +223,8 @@ class PlayerView: UIView {
 
     @objc
     private func moveCoinViewButtonPressed() {
-        coinViewIsDown.toggle()
-        animateCoinViewPosition()
+        coinPosition.toggle()
+        animateViewState()
     }
 
     @objc
@@ -208,14 +247,14 @@ class PlayerView: UIView {
             let distanceDown = min(translationDistance, coinDownPosition + threshold)
             let distanceToMove = isMovingUp ? distanceUp : distanceDown
 
-            coinViewIsDown = !isMovingUp
+            coinPosition = isMovingUp ? .up : .down
 
             albumImage.center = CGPoint(x: coinInitialCenter.x, y: distanceToMove)
 
         case .ended,
              .cancelled:
             /// When the pan gesture is ended or cancelled, move the coin view to rest in either the up or down position
-            animateCoinViewPosition()
+            animateViewState()
 
         default:
             break
@@ -254,6 +293,7 @@ extension PlayerView: Constructible {
         addSubview(trackLabelView)
 
         bringSubviewToFront(albumImage)
+        bringSubviewToFront(moveCoinViewButton)
     }
     
     func addConstraints() {
@@ -286,7 +326,6 @@ extension PlayerView: Constructible {
         trackLabelView.activateConstraints([
             trackLabelView.rightAnchor.constraint(equalTo: rightAnchor, constant: Dimensions.TrackLabelView.rightMargin),
             trackLabelView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimensions.TrackLabelView.leftMargin),
-            trackLabelView.heightAnchor.constraint(equalToConstant: Dimensions.TrackLabelView.height),
             trackLabelView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }

@@ -6,6 +6,7 @@
 //  Copyright © 2021 Zach Radford. All rights reserved.
 //
 
+import MarqueeLabel
 import UIKit
 
 class TrackLabelView: UIView {
@@ -13,20 +14,26 @@ class TrackLabelView: UIView {
 
     private enum Dimensions {
         enum TrackNameLabel {
-            static let height: CGFloat = 40
+            static let height: CGFloat = 28
         }
 
         enum ArtistNamesLabel {
-            static let height: CGFloat = 40
+            static let height: CGFloat = 28
         }
     }
 
     // MARK: - UI Elements
 
-    private let trackNameLabel: UILabel = {
-        let label = UILabel()
+    private let trackNameLabel: MarqueeLabel = {
+        let label = MarqueeLabel()
         label.textColor = .white
         label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 22)
+        label.type = .continuous
+        label.animationDelay = 4
+        label.speed = .duration(10)
+        label.animationCurve = .easeInOut
+        label.fadeLength = 10.0
 
         return label
     }()
@@ -35,6 +42,7 @@ class TrackLabelView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14, weight: .light)
 
         return label
     }()

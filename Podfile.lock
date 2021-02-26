@@ -1,22 +1,26 @@
 PODS:
+  - MarqueeLabel (4.0.5)
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
   - SwiftLint (0.42.0)
 
 DEPENDENCIES:
+  - MarqueeLabel
   - SDWebImage
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - MarqueeLabel
     - SDWebImage
     - SwiftLint
 
 SPEC CHECKSUMS:
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
 
-PODFILE CHECKSUM: b15a9dc0f211963d26e7cd5b78503f6eda18baa4
+PODFILE CHECKSUM: 3bf2a1bc3f77fa712cb7f33c893e09f150b38749
 
 COCOAPODS: 1.10.0

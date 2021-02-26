@@ -3,6 +3,7 @@ platform :ios, '11.0'
 target 'SpotifyVision' do
   use_frameworks!
 
+  pod 'MarqueeLabel'
   pod 'SDWebImage'
   pod 'SwiftLint'
 
