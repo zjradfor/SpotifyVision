@@ -10,6 +10,8 @@ xcuserdata
 *.dSYM.zip
 *.dSYM
 .build/
+build/
+DerivedData/
 
 # API Keys
 SpotifyVision/Utilities/SpotifyCredentials.swift
